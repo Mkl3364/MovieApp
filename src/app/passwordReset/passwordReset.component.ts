@@ -27,11 +27,9 @@ export class ResetPasswordComponent {
     })
 
     onSubmitResetPassword() {
-        this.query.queryParams.pipe(filter((params: any) => params.code)).subscribe((params: any) => {
-            console.log(params);
-            this.code = params.code;
-            console.log(this.code)
-        })
-        this.forgotPwdService.verifyResetPasswordCode(this.code).then(() => console.log('code is under verification'))
+        this.code = this.query.snapshot.queryParams['oobCode'];
+        console.log(this.code)
+        this.forgotPwdService.verifyResetPasswordCode(this.code).then((res) => console.log(res))
+        this.forgotPwdService.confirmPasswordReset(this.code, this.password);
     }
 }
