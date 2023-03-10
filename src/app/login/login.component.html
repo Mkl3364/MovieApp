@@ -1,0 +1,24 @@
+<div>
+    <h2>Login</h2>
+    <form [formGroup]="loginForm">
+        <label>Email</label>
+        <input type="email" formControlName="email" [(ngModel)]="email" required>
+        <label>Password</label>
+        <input type="password" formControlName="password" [(ngModel)]="password" required/>
+    </form>
+    <!-- <p>Complete the form to enable button.</p> -->
+    <button [disabled]="!loginForm.valid" (click)="SignIn()">Submit</button>
+    <!-- <p>Status : {{loginForm.status}}</p> -->
+</div>
+<p><a routerLink="forgotPassword">Mot de passe oublié ?</a></p>
+
+<div *ngIf="authent.user | async as user; else showLogin" class="logout-wrapper">
+    <button class="logout-button" (click)="logout()">Logout</button>
+  </div>
+  <ng-template #showLogin>
+    <button (click)="login()">Login with Google</button>
+  </ng-template>
+
+  <button (click)="SignInWithGithub()">Login with GitHub</button>
+
+  <p>Pas de compte ? <a routerLink="register">Register</a></p>

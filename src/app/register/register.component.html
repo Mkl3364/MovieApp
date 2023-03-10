@@ -1,0 +1,11 @@
+<div>
+    <h2>Register</h2>
+    <form [formGroup]="registerForm">
+        <label>Email</label>
+        <input type="email" formControlName="email" [(ngModel)]="email" required>
+        <label>Password</label>
+        <input type="password" formControlName="password" [(ngModel)]="password" required/>
+    </form>
+    <button [disabled]="!registerForm.valid" (click)="onSubmitRegister()">Submit register form</button>
+    <p>Déjà un compte ? <a routerLink=''>Login</a></p>
+</div>

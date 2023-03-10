@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "movieapp-ca36e": {
+      "hosting": {
+        "tp-movies": [
+          "movieapp-ca36e"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "movieapp-ca36e"
+  }
+}

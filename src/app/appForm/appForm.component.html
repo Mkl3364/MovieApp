@@ -1,0 +1,9 @@
+    <div>
+        <h2>Add a title film</h2>
+        <form [formGroup]="addFilmForm">
+            <label>Title</label>
+            <input type="text" formControlName="title" [(ngModel)]="title" required>
+        </form>
+        <p>Complete the form to add a film on firestore database.</p>
+        <button [disabled]="!addFilmForm.valid" (click)="onSubmitAddDatabase()">Submit title</button>
+    </div>

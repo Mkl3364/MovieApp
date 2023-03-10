@@ -1,0 +1,6 @@
+<div>Voici le titre récupéré avec Firestore database</div>
+<ul>
+    <li *ngFor="let item of items | async">
+      {{ item.title }}
+    </li>
+  </ul>

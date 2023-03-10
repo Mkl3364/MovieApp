@@ -1,0 +1,11 @@
+<tp-movies-header></tp-movies-header>
+<div *ngIf="movies$ | async as movie">
+    <ul>
+        <li *ngFor="let aaa of movie.results">
+            <h2>{{ aaa.title }}</h2>
+            <img src="https://image.tmdb.org/t/p/w500{{aaa.poster_path}}" />
+            <h3 *ngIf="aaa.adult">Adult movie: Yes</h3>
+            <p>Release date : {{aaa.release_date}}</p>
+        </li>
+    </ul>
+</div>
