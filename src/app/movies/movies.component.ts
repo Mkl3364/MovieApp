@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { HeaderComponent } from "../header/header.component";
+import { FooterComponent } from "../footer/footer.component";
 import { MoviesService } from "./movies.service";
 
 @Component({
@@ -8,7 +9,7 @@ import { MoviesService } from "./movies.service";
     selector: "tp-movies-movies-api",
     templateUrl: "./movies.component.html",
     styleUrls: [],
-    imports: [CommonModule, HeaderComponent]
+    imports: [CommonModule, HeaderComponent, FooterComponent]
 })
 export class MoviesComponent {
     movies$ = this.moviesService.getMoviesPopular();
