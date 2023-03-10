@@ -13,7 +13,7 @@ import { MoviesService } from "./movies.service";
     imports: [CommonModule, HeaderComponent, FooterComponent]
 })
 export class MoviesComponent {
-    movies$ = this.moviesService.getMovies();
+    movies$ = this.moviesService.getMoviesPopular();
     constructor(private readonly moviesService: MoviesService) {
 
     }
