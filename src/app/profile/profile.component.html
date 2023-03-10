@@ -1,6 +1,8 @@
 <div class="container">
 <div class="profile-fist-content">
     <img class="profile-first-content-img" src="#" alt="user-image" />
+    <img src="../../assets/img/edit-photo.svg" alt="" />
+    <input type="file" accept="jpeg" style="opacity: 0;" (change)="retrieveImgData($event)">
     <h2 class="user-name">User Name</h2>
     <h3 class="user-email">Email adress</h3>
 </div>
