@@ -37,19 +37,51 @@
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 2rem;
+    width: 80%;
+    border-radius: 1rem;
     
     .first-page{
         button{
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            padding: 1rem 2rem;
             display: block;
             margin-inline: auto;
         }
+        .no-password{
+            color: $white;
+        }
+
+        .inputs{
+            width: 100%;
+            padding: 1rem;
+        }
     }
 
-    form{
-
+    .close-img{
+        width: 3rem;
+        float: right;
+    }
+    .align-items{
+        display: flex;
     }
 }
 
 .title-auth{
+    text-align: center;
+}
+
+.social-network-connexion{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-evenly;
+
+    img{
+        width: 5rem;
+    }
+}
+
+.account{
+    margin-top: 2rem;
     text-align: center;
 }

@@ -6,6 +6,7 @@ import { Router, RouterLink, RouterOutlet } from "@angular/router";
 import firebase from 'firebase/compat/app';
 import { tap } from "rxjs";
 import { MoviesService } from "../movies/movies.service";
+import { RegisterFormService } from "./register.service";
 import { LoginFormService } from "../welcome-page/login.service";
 
 @Component({
@@ -17,28 +18,41 @@ import { LoginFormService } from "../welcome-page/login.service";
 })
 export class WelcomePageComponent implements OnInit{
 
-  email: string;
-  password: string;
+  loginEmail: string;
+  loginPassword: string;
+  registerEmail: string;
+  registerPassword: string;
   getAllDatas$ = this.moviesService.getMoviesPopular();
   randomImage: string;
   randomName: string;
-  btnIsClicked: boolean;
+  getStartedIsClicked: boolean;
+  registerIsClicked: boolean;
 
-  constructor (private readonly moviesService: MoviesService, private readonly db: FormBuilder, public loginAuthentication: LoginFormService, public authent: AngularFireAuth, private router: Router) {
+  constructor (private readonly moviesService: MoviesService, private readonly db: FormBuilder, public loginAuthentication: LoginFormService, public authent: AngularFireAuth, private router: Router, public registerService: RegisterFormService) {
     this.randomImage = '';
     this.randomName = '';
-    this.btnIsClicked = false;
+    this.getStartedIsClicked = false;
+    this.registerIsClicked = false;
 
-    this.email = this.loginForm.value.email ?? ''
-    this.password = this.loginForm.value.password ?? ''
+    this.loginEmail = this.loginForm.value.loginEmail ?? '';
+    this.loginPassword = this.loginForm.value.loginPassword ?? '';
+
+    this.registerEmail = this.registerForm.value.registerEmail ?? '';
+    this.registerPassword = this.registerForm.value.registerPassword ?? '';
   }
 
-  loginForm = this.db.group({
-    email: ['', Validators.required],
-    password: ['', Validators.required]
-})
+  registerForm = this.db.group({
+    registerEmail: ['', Validators.required],
+    registerPassword: ['', Validators.required]
+  })
+
+    loginForm = this.db.group({
+      loginEmail: ['', Validators.required],
+      loginPassword: ['', Validators.required]
+  })
 
   ngOnInit() {
+    this.authent.signOut();
     this.getAllDatas$.pipe(
       tap(allDatas => {
         const randomNumber = Math.floor(Math.random() * allDatas.results.length);
@@ -49,26 +63,29 @@ export class WelcomePageComponent implements OnInit{
     ).subscribe();
   }
 
-SignIn() {
-    this.loginAuthentication.SignIn(this.email, this.password).then(() => this.router.navigateByUrl('movies'));
-    this.email = ''
-    this.password= ''
-}
+  SignIn() {
+    this.loginAuthentication.SignIn(this.loginEmail, this.loginPassword);
 
-login() {
+    this.loginEmail = ''
+    this.loginPassword= ''
+  }
+
+  login() {
     this.authent.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(() => this.router.navigateByUrl('movies'));
-}
-logout() {
-    this.authent.signOut();
-}
+  }
 
-SignInWithGithub() {
+  SignInWithGithub() {
     this.authent.signInWithPopup(new firebase.auth.GithubAuthProvider()).then(() => this.router.navigateByUrl('movies'));
-}
+  }
 
-forgotPasswordSubmit(email: string) {
-    this.loginAuthentication.ForgotPassword(email)
-}
-  
-  
+  forgotPasswordSubmit(loginEmail: string) {
+    this.loginAuthentication.ForgotPassword(loginEmail);
+  }
+
+  onSubmitRegister() {
+    console.log('suis la !')
+    this.registerService.SignUp(this.registerEmail, this.registerPassword);
+    this.registerEmail = '';
+    this.registerPassword = '';
+  }  
 }

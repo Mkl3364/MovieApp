@@ -7,33 +7,57 @@
     <p class="sub-title">
         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam.
     </p>
-    <button (click)="btnIsClicked = true" class="get-started"> Get Started </button>
+    <button (click)="getStartedIsClicked = true" class="get-started"> Get Started </button>
 </div>
 
 
-<div class="auth-page" *ngIf="btnIsClicked">
+<div class="auth-page" *ngIf="getStartedIsClicked">
     <div class="content-auth-page">
-        <h2 class="title-auth"> Connexion </h2>
+        <img class="close-img" (click)="getStartedIsClicked = false" src="../../assets/img/cross.svg" alt="close popup" />
+        <h2 class="title-auth"> Login </h2>
+        
         <div class="first-page">
             <form [formGroup]="loginForm">
-                <label>Email</label>
-                <input type="email" formControlName="email" [(ngModel)]="email" placeholder="example@example.com" required>
-                <label>Password</label>
-                <input type="password" formControlName="password" [(ngModel)]="password" required placeholder="******"/>
-                <p><a routerLink="forgotPassword">Mot de passe oublié ?</a></p>
+                <div>
+                    <label>Email</label> <br />
+                    <input class="inputs" type="email" formControlName="loginEmail" placeholder="example@example.com">
+                </div>
+                <div>
+                    <label>Password</label> <br />
+                    <input class="inputs" type="password" formControlName="loginPassword" placeholder="******"/>
+                </div>
             </form>
+            <a class="no-password" routerLink="forgotPassword">Mot de passe oublié ?</a>
             <button [disabled]="!loginForm.valid" (click)="SignIn()">Submit</button>
         
-        <div *ngIf="authent.user | async as user; else showLogin" class="logout-wrapper">
-            <button class="logout-button" (click)="logout()">Logout</button>
+            <h2 class="title-auth"> Login with </h2>
+            <div class="social-network-connexion">
+                <img (click)="SignInWithGithub()" src="../../assets/img/github.svg" alt="login with github">
+                <img (click)="login()" src="../../assets/img/google.svg" alt="login with google">  
+            </div>   
+            
+            <p (click)="registerIsClicked = true; getStartedIsClicked= false;" class="account">Pas de compte ? Register</p>
         </div>
-        <ng-template #showLogin>
-            <button (click)="login()">Login with Google</button>
-        </ng-template>
-        
-        <button (click)="SignInWithGithub()">Login with GitHub</button>
-        
-        <p>Pas de compte ? <a routerLink="register">Register</a></p>
+    </div>
+</div>
+
+<div class="auth-page" *ngIf="registerIsClicked">
+    <div class="content-auth-page">
+        <img class="close-img" (click)="registerIsClicked = false" src="../../assets/img/cross.svg" alt="close popup" />
+        <h2 class="title-auth"> Register </h2>
+        <div class="first-page">
+            <form [formGroup]="registerForm">
+                <div>
+                    <label>Email</label> <br />
+                    <input class="inputs" type="email" formControlName="registerEmail" placeholder="example@example.com">
+                </div>
+                <div>
+                    <label>Password</label> <br />
+                    <input class="inputs" type="password" formControlName="registerPassword" placeholder="******"/>
+                </div>
+            </form>
+            <button [disabled]="!registerForm.valid" (click)="onSubmitRegister()">Submit register form</button>
+            <p class="account" (click)="registerIsClicked = false; getStartedIsClicked = true;" >Déjà un compte ? Login</p>
         </div>
     </div>
 </div>
