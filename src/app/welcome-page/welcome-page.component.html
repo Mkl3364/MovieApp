@@ -1,0 +1,39 @@
+<div class="welcome-page">
+    <img class="main-image" src="https://image.tmdb.org/t/p/w500/{{randomImage}}" alt ='{{randomName}}' />
+
+    <h1 class="title">
+        Watch movie anywhere. anytime.
+    </h1>
+    <p class="sub-title">
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam.
+    </p>
+    <button (click)="btnIsClicked = true" class="get-started"> Get Started </button>
+</div>
+
+
+<div class="auth-page" *ngIf="btnIsClicked">
+    <div class="content-auth-page">
+        <h2 class="title-auth"> Connexion </h2>
+        <div class="first-page">
+            <form [formGroup]="loginForm">
+                <label>Email</label>
+                <input type="email" formControlName="email" [(ngModel)]="email" placeholder="example@example.com" required>
+                <label>Password</label>
+                <input type="password" formControlName="password" [(ngModel)]="password" required placeholder="******"/>
+                <p><a routerLink="forgotPassword">Mot de passe oublié ?</a></p>
+            </form>
+            <button [disabled]="!loginForm.valid" (click)="SignIn()">Submit</button>
+        
+        <div *ngIf="authent.user | async as user; else showLogin" class="logout-wrapper">
+            <button class="logout-button" (click)="logout()">Logout</button>
+        </div>
+        <ng-template #showLogin>
+            <button (click)="login()">Login with Google</button>
+        </ng-template>
+        
+        <button (click)="SignInWithGithub()">Login with GitHub</button>
+        
+        <p>Pas de compte ? <a routerLink="register">Register</a></p>
+        </div>
+    </div>
+</div>
