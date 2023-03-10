@@ -1,1 +1,16 @@
-<p>notification-push works!</p>
+<!-- <button (click)="sendNotification()">Envoyer une notification push</button> -->
+<head>
+    <link rel="manifest" href="../manifest.json">
+</head>
+
+<div>
+    salut ca notifie fort ici !
+</div>
+
+<div *ngIf="message;">
+    <h1>{{ message.notification.title }}</h1>
+    <h2>{{ message.notification.body }}</h2>
+  </div>
+  <div *ngIf="!message;">
+    No Message Arrived
+  </div>
