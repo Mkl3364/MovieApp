@@ -1,0 +1,53 @@
+@import '../../variables';
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 10vh;
+    background-color: $black;
+    padding-inline: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    ul {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        li {
+            list-style-type: none;
+
+            &.home-link-container {
+                color: $white;
+                padding: .5rem 1rem;
+                border-radius: 15px;
+
+                background-image: linear-gradient(220deg, $purple, $blue);
+
+                a {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 1rem;
+                    color: $white;
+
+                    img {
+                        height: 25px;
+                    }
+
+                    p {
+                        font-size: 1.25rem;
+                    }
+                }
+            }
+
+            a {
+                text-decoration: none;
+            }
+        }
+    }
+}

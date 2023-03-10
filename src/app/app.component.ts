@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { AppFormComponent } from './appForm/appForm.component';
 import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 import { MoviesComponent } from './movies/movies.component';
 import { TestDatabaseComponent } from './testDatabase/testDatabase.component';
 
@@ -11,7 +12,7 @@ import { TestDatabaseComponent } from './testDatabase/testDatabase.component';
   selector: 'tp-movies-selector',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [RouterOutlet, CommonModule, MoviesComponent, AppFormComponent, RouterLink, TestDatabaseComponent, HeaderComponent],
+  imports: [RouterOutlet, CommonModule, MoviesComponent, AppFormComponent, RouterLink, TestDatabaseComponent, HeaderComponent, FooterComponent],
 })
 export class AppComponent {
 
