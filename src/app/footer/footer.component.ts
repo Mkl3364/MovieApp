@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from "@angular/router";
+import { RouterLink } from "@angular/router";
 
 
 @Component({
@@ -7,7 +7,7 @@ import { RouterLink, RouterOutlet } from "@angular/router";
   selector: 'tp-movies-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
-  imports: [RouterLink, RouterOutlet]
+  imports: [RouterLink]
 })
 export class FooterComponent {
 
