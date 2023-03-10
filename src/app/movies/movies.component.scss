@@ -1,0 +1,10 @@
+@import '../../variables.scss';
+
+
+.homepage-container {
+    background-color: $black;
+
+    .search-input-container {
+        padding-top: 2rem;
+    }
+}

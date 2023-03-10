@@ -1,14 +1,18 @@
 <tp-movies-header></tp-movies-header>
-<div *ngIf="movies$ | async as movie">
+<section class="homepage-container" *ngIf="movies$ | async as movie">
+    <div class="search-input-container">
+        <input class="search-input" type="text" placeholder="What are you watching today">
+        <img src="../../assets/img/search-icon.svg" alt="">
+    </div>
     <ul>
-        <li *ngFor="let aaa of movie.results">
-            <h2>{{ aaa.title }}</h2>
-            <img src="https://image.tmdb.org/t/p/w500{{aaa.poster_path}}" />
-            <h3 *ngIf="aaa.adult">Adult movie: Yes</h3>
-            <p>Release date : {{aaa.release_date}}</p>
+        <li *ngFor="let movie of movie.results">
+            <h2>{{ movie.title }}</h2>
+            <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" />
+            <h3 *ngIf="movie.adult">Adult movie: Yes</h3>
+            <p>Release date : {{movie.release_date}}</p>
         </li>
     </ul>
     <button>Aled le bouton</button>
-</div>
+</section>
 
 <tp-movies-footer></tp-movies-footer>
