@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { HeaderComponent } from "../header/header.component";
 import { MoviesService } from "./movies.service";
+//import { UserImageComponent } from '../user-image/user-image.component';
 
 @Component({
     standalone: true,
