@@ -8,9 +8,6 @@ import { Observable } from "rxjs";
 export class MoviesService {
     constructor(private httpClient: HttpClient) {
 
-        console.log(this.getMovies())
-        console.log(this.getGenres())
-
     }
 
     public getMovies(): Observable<any> {
@@ -20,5 +17,5 @@ export class MoviesService {
         return this.httpClient.get("https://api.themoviedb.org/3/genre/movie/list?api_key=81a8a2c4c129dd1c603073a9d974becb&language=en-US")
     }
 
-    
+
 }

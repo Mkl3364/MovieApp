@@ -16,12 +16,17 @@
 
 
     <h2>Genre</h2>
+    <div class="filter-genre">
+        <div (click)="getPopularMovies()">
+            All Genres
+        </div>
+        <div *ngFor="let genre of genres" (click)="filterGenre(genre.id)"> {{ genre.name }} </div>
+    </div>
     <ul class="movies-list-container">
-        <tp-movies-movie-container-common *ngFor="let movie of movie.results" [title]="movie.title"
-            [backdrop_path]="movie.backdrop_path" [vote_average]="movie.vote_average"
-            [release_date]="movie.release_date" />
+        <tp-movies-movie-container-common *ngFor="let movie of recentMovies.results" [title]="movie.title"
+            [backdrop_path]="movie.backdrop_path ? movie.backdrop_path : movie.poster_path"
+            [vote_average]="movie.vote_average" [release_date]="movie.release_date" />
     </ul>
-    <button>Aled le bouton</button>
 </section>
 
 <tp-movies-footer></tp-movies-footer>

@@ -8,11 +8,14 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class MovieContainerCommonComponent implements OnInit {
 
+  backgroundImage: string;
+
   constructor() {
     this.title = "";
     this.backdrop_path = "";
     this.vote_average = 0;
-    this.release_date = ""
+    this.release_date = "";
+    this.backgroundImage = '';
   }
 
   @Input() title: string;
@@ -21,6 +24,10 @@ export class MovieContainerCommonComponent implements OnInit {
   @Input() release_date: string;
 
   ngOnInit() {
-    console.log(this.title);
+    if (!this.backdrop_path) {
+      this.backgroundImage = '/assets/img/img-not-found.jpg';
+    } else {
+      this.backgroundImage = `https://image.tmdb.org/t/p/w500${this.backdrop_path}`;
+    }
   }
 }

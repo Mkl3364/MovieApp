@@ -6,9 +6,9 @@ import { Observable } from "rxjs";
     providedIn: 'root',
 })
 export class MoviesService {
-    constructor(private httpClient: HttpClient ) {
+    constructor(private httpClient: HttpClient) {
 
-        console.log(this.getMovies())
+        // console.log(this.getMovies())
 
     }
 

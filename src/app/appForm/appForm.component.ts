@@ -38,7 +38,7 @@ export class AppFormComponent {
         this.title = ''
     }
 
-    onSubmit() { 
-        console.log(this.profileForm.value)
-    } 
+    onSubmit() {
+
+    }
 }

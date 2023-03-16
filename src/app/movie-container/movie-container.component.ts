@@ -8,7 +8,7 @@ import { CommonModule } from "@angular/common";
   styleUrls: ['./movie-container.component.scss'],
   imports: [CommonModule]
 })
-export class MovieContainerComponent implements OnInit {
+export class MovieContainerComponent {
 
   constructor() {
     this.title = "";
@@ -21,9 +21,5 @@ export class MovieContainerComponent implements OnInit {
   @Input() backdrop_path: string;
   @Input() vote_average: number;
   @Input() genresName?: string[];
-
-  ngOnInit() {
-    console.log(this.title);
-  }
 
 }
