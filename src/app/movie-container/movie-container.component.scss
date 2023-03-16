@@ -2,12 +2,14 @@
 
 .carousel-wrapper {
     display: flex;
-    width: 100%;
+    width: 75vw;
     flex-direction: column;
     background-color: $grey;
     justify-content: flex-end;
     aspect-ratio: 16/9;
     border-radius: 15px;
+    background-size: contain;
+    background-repeat: no-repeat;
 
     .info-play-container {
         display: flex;
@@ -23,6 +25,7 @@
             }
 
             .rate-hour-theme-container {
+                margin-top: 1rem;
                 display: flex;
                 gap: 2rem;
                 align-items: center;
@@ -35,6 +38,13 @@
                     padding: 0.5rem;
                     gap: .5rem;
                     border-radius: 5px;
+                }
+
+                .genre-container {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    width: 100px;
                 }
             }
         }
