@@ -1,1 +1,37 @@
-<div>Bienvenue</div>
+<div *ngIf="movie$ | async as movie">
+    <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" class="image-header" />
+    <div routerLink="/movies" class="go-back">
+        <img src="../../assets/img/arrow-left.svg" />
+    </div>
+    <div class="share">
+        <img src="../../assets/img/share-icon.svg" />
+    </div>
+    <div class="singleFilmContent">
+        <div class="singleFilmTitle">{{movie.original_title}}</div>
+        <div class="single-movie-elements">
+            <span class="movie-star"><img src="../../assets/img/movie_star.svg" />{{movie.vote_average}}</span>
+            <span class="movie-star">{{movie.status}}</span>
+            <span *ngIf="movie.adult" class="movie-star">18+</span>
+        </div>
+        <ul class="genre-list">
+            <li *ngFor="let aaa of movie.genres">
+                {{aaa.name}}
+            </li>
+        </ul>
+        <div>
+            <h3 class="review">Story Line</h3>
+            <p class="review-content">{{ movie.overview }}</p>
+        </div>
+        <div *ngIf="castMovie$ | async as cast">
+            <ul class="cast-list">
+                <li *ngFor="let bbb of cast.cast" class="castLi">
+                    <img src="https://image.tmdb.org/t/p/w500{{bbb.profile_path}}" class="cast-photos"/>
+                    {{bbb.name}}
+                </li>
+            </ul>
+        </div>
+        <div class="like-container">
+            <img src="../../assets/img/like-heart.svg" class="like-movie" (click)="addMovieToLikes()"/>
+        </div>
+    </div>
+</div>
