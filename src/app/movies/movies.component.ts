@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
+import { MovieCarouselComponent } from "../movie-carousel/movie-carousel.component";
 import { MoviesService } from "./movies.service";
 
 @Component({
@@ -9,8 +10,7 @@ import { MoviesService } from "./movies.service";
     selector: "tp-movies-movies-api",
     templateUrl: "./movies.component.html",
     styleUrls: ['./movies.component.scss'],
-
-    imports: [CommonModule, HeaderComponent, FooterComponent]
+    imports: [CommonModule, HeaderComponent, FooterComponent, MovieCarouselComponent]
 })
 export class MoviesComponent {
     movies$ = this.moviesService.getMovies();

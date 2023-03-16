@@ -4,6 +4,9 @@
         <input class="search-input" type="text" placeholder="What are you watching today">
         <img src="../../assets/img/search-icon.svg" alt="">
     </div>
+
+
+    <tp-movies-movie-carousel></tp-movies-movie-carousel>
     <ul>
         <li *ngFor="let movie of movie.results">
             <h2>{{ movie.title }}</h2>
