@@ -5,15 +5,21 @@
         <img src="../../assets/img/search-icon.svg" alt="">
     </div>
 
+    <h2>A la une</h2>
 
     <tp-movies-movie-carousel></tp-movies-movie-carousel>
-    <ul>
-        <li *ngFor="let movie of movie.results">
-            <h2>{{ movie.title }}</h2>
-            <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" />
-            <h3 *ngIf="movie.adult">Adult movie: Yes</h3>
-            <p>Release date : {{movie.release_date}}</p>
-        </li>
+
+
+    <h2>Continuer à regarder</h2>
+
+    <tp-movies-movie-carousel></tp-movies-movie-carousel>
+
+
+    <h2>Genre</h2>
+    <ul class="movies-list-container">
+        <tp-movies-movie-container-common *ngFor="let movie of movie.results" [title]="movie.title"
+            [backdrop_path]="movie.backdrop_path" [vote_average]="movie.vote_average"
+            [release_date]="movie.release_date" />
     </ul>
     <button>Aled le bouton</button>
 </section>
