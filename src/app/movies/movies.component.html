@@ -2,8 +2,8 @@
 <div *ngIf="movies$ | async as movie">
     <ul>
         <li *ngFor="let aaa of movie.results">
-            <h2>{{ aaa.title }}</h2>
-            <img src="https://image.tmdb.org/t/p/w500{{aaa.poster_path}}" />
+            <a routerLink="/movie/{{ aaa.id }}"><h2>{{ aaa.title }}</h2></a>
+            <a routerLink="/movie/{{ aaa.id }}"><img src="https://image.tmdb.org/t/p/w500{{aaa.poster_path}}" /></a>
             <h3 *ngIf="aaa.adult">Adult movie: Yes</h3>
             <p>Release date : {{aaa.release_date}}</p>
 

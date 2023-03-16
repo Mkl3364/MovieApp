@@ -3,6 +3,7 @@ import { Component } from "@angular/core";
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { MoviesService } from "./movies.service";
+import { Router, RouterLink } from "@angular/router";
 //import { UserImageComponent } from '../user-image/user-image.component';
 
 @Component({
@@ -10,11 +11,11 @@ import { MoviesService } from "./movies.service";
     selector: "tp-movies-movies-api",
     templateUrl: "./movies.component.html",
     styleUrls: [],
-    imports: [CommonModule, HeaderComponent, FooterComponent]
+    imports: [CommonModule, HeaderComponent, FooterComponent, RouterLink]
 })
 export class MoviesComponent {
     movies$ = this.moviesService.getMoviesPopular();
-    constructor(private readonly moviesService: MoviesService) {
+    constructor(private readonly moviesService: MoviesService, private router: Router) {
 
     }
 }
