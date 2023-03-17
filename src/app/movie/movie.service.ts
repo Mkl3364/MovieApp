@@ -3,6 +3,30 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 
 
+export interface Movie {
+    adult: boolean
+    genres : Genre[]
+    original_title: string
+    overview: string
+    poster_path: string
+    release_date: string
+    status: string
+    vote_average: number
+}
+
+export interface UserInterface {
+    displayName: string | null
+    email: string | null
+    photoURL: string | null
+    // isLogged : boolean
+    // moviesLiked: Movie[]
+}
+
+export interface Genre {
+    id: number;
+    name: string;
+}
+
 @Injectable({
     providedIn: 'root'
 })
