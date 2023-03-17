@@ -1,1 +1,8 @@
-<p>notification-push works!</p>
+<head>
+	<link rel="manifest" href="../manifest.json">
+</head>
+
+<div *ngIf="messageTitle || messageBody">
+	<h1>{{ messageTitle }}</h1>
+	<h2>{{ messageBody }}</h2>
+</div>

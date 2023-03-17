@@ -5,21 +5,22 @@ import { FooterComponent } from "../footer/footer.component";
 import { PaginationComponent } from "../pagination/pagination.component";
 import { MovieCarouselComponent } from "../movie-carousel/movie-carousel.component";
 import { MoviesService } from "./movies.service";
+import { NotificationPushComponent } from "../notification-push/notification-push.component";
 import { MovieContainerCommonComponent } from "../movie-container-common/movie-container-common.component";
 import { apiService } from "src/api.service";
 import { tap } from "rxjs";
-
 interface genre {
     id: number,
     name: string,
 }
+
 
 @Component({
     standalone: true,
     selector: "tp-movies-movies-api",
     templateUrl: "./movies.component.html",
     styleUrls: ['./movies.component.scss'],
-    imports: [CommonModule, HeaderComponent, FooterComponent, MovieCarouselComponent, MovieContainerCommonComponent, PaginationComponent]
+    imports: [CommonModule, HeaderComponent, FooterComponent, MovieCarouselComponent, MovieContainerCommonComponent, PaginationComponent, NotificationPushComponent]
 })
 export class MoviesComponent implements OnInit {
 
