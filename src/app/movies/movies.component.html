@@ -1,15 +1,34 @@
 <tp-movies-header></tp-movies-header>
-<div *ngIf="movies$ | async as movie">
-    <ul>
-        <li *ngFor="let aaa of movie.results">
-            <a routerLink="/movie/{{ aaa.id }}"><h2>{{ aaa.title }}</h2></a>
-            <a routerLink="/movie/{{ aaa.id }}"><img src="https://image.tmdb.org/t/p/w500{{aaa.poster_path}}" /></a>
-            <h3 *ngIf="aaa.adult">Adult movie: Yes</h3>
-            <p>Release date : {{aaa.release_date}}</p>
+<section class="homepage-container" *ngIf="movies$ | async as movie">
+    <div class="search-input-container">
+        <input class="search-input" type="text" placeholder="What are you watching today">
+        <img src="../../assets/img/search-icon.svg" alt="Search Icon">
+    </div>
 
-        </li>
+    <h2>A la une</h2>
+
+    <tp-movies-movie-carousel></tp-movies-movie-carousel>
+
+
+    <h2>Continuer à regarder</h2>
+
+    <tp-movies-movie-carousel></tp-movies-movie-carousel>
+
+
+    <h2>Genre</h2>
+    <div class="filter-genre">
+        <div (click)="getPopularMovies()">
+            All Genres
+        </div>
+        <div *ngFor="let genre of genres" (click)="filterGenre(genre.id)"> {{ genre.name }} </div>
+    </div>
+    <ul class="movies-list-container">
+        <tp-movies-movie-container-common *ngFor="let movie of recentMovies.results" [title]="movie.title"
+            [backdrop_path]="movie.backdrop_path ? movie.backdrop_path : movie.poster_path"
+            [vote_average]="movie.vote_average" [release_date]="movie.release_date" />
     </ul>
-    <button>Aled le bouton</button>
-</div>
+
+    <tp-movies-pagination [totalPages]="totalPages" [currentPage]="currentPage" (pageChanged)="onPageChanged($event)" />
+</section>
 
 <tp-movies-footer></tp-movies-footer>
