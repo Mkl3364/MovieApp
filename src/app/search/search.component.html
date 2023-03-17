@@ -11,7 +11,7 @@
             [vote_average]="movie.vote_average" [release_date]="movie.release_date" />
     </ul>
 
-    <tp-movies-pagination [totalPages]="1" [currentPage]="1" />
+    <tp-movies-pagination [totalPages]="totalPages" [currentPage]="currentPage" (pageChanged)="onPageChanged($event)" />
 </div>
 
 <tp-movies-footer></tp-movies-footer>

@@ -48,4 +48,10 @@ export class SearchComponent implements OnInit {
 			this.totalResults = filteredMovies.total_results;
 		})).subscribe();
 	}
+
+	onPageChanged(e: number) {
+		this.currentPage = e
+		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+		this.getMovies(this.query!)
+	}
 }
