@@ -44,12 +44,13 @@
         </div>
         <ng-template #getResetForm>
             <div class="first-page" *ngIf="!emailSent; else showEmailSentSuccess">
-                <h2 class="title-auth">Password Reset</h2>
+                <h2 class="title-auth">Réinitialiser le mot de passe</h2>
                 <form [formGroup]="forgotPwdForm">
                     <div class="container-input-label">
                         <label>Email</label> <br />
                         <input class="inputs" type="email" formControlName="emailForgotPassword" [(ngModel)]="emailForgotPassword">
                     </div>
+                    <p (click)="resetPassword = false;" class="account">Se connecter</p>
                 </form>
                 <button [disabled]="!forgotPwdForm.valid" (click)="forgotPasswordSubmit()"> Nouveau mot de passe </button>
             </div>
