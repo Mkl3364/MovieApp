@@ -4,7 +4,9 @@ import { AngularFireAuthGuard } from '@angular/fire/compat/auth-guard';
 import { ResetPasswordComponent } from './passwordReset/passwordReset.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { ProfileComponent } from './profile/profile.component';
+import { MovieComponent } from './movie/movie.component';
 import { SearchComponent } from './search/search.component';
+
 
 export const appRoutes: Route[] = [
     {
@@ -23,6 +25,11 @@ export const appRoutes: Route[] = [
     {
         path: 'movies',
         component: MoviesComponent,
+        canActivate: [AngularFireAuthGuard]
+    },
+    {
+        path: 'movie/:id',
+        component: MovieComponent,
         canActivate: [AngularFireAuthGuard]
     },
     {

@@ -1,0 +1,155 @@
+@import '../../_variables.scss';
+
+.singleFilmContent {
+    position: relative;
+    padding: 20px;
+    background-color: $black;
+    // left: 0%;
+    // right: 0%;
+    // top: 33.41%;
+    // bottom: 16.59%;
+    width: 100%;
+    margin-top: 40vh;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    height: 60vh;
+    overflow-y: auto;
+
+}
+
+.singleFilmTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 23px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    color: $white;
+    text-align: center;
+}
+
+.single-movie-elements {
+    display: flex;
+    justify-content: space-evenly;
+    color: $white;
+    gap: 0.5;
+}
+
+.movie-star {
+    background-color: $grey;
+    padding: 8px 8px 8px 8px;
+    border-radius: 12px;
+
+}
+
+li {
+    color: $white;
+    margin: 5px;
+    margin-top: 10px;
+}
+
+.genre-list {
+    display: flex;
+    justify-content: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    list-style: none;
+}
+
+.review {
+    color: $white;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    margin-top: 30px;
+
+}
+
+.review-content {
+    color: $white;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 24px;
+}
+
+.image-header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.like-movie {
+    height: 50px;
+}
+
+.like-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.dot {
+    height: 55px;
+    width: 55px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.castLi {
+    color: $white
+}
+
+.cast-photos {
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+}
+
+.cast-list {
+    list-style: none;
+    display: flex;
+    overflow-x: scroll;
+}
+
+.go-back {
+    background-color: $grey;
+    position: absolute;
+    left: 6.93%;
+    right: 85.07%;
+    top: 2.93%;
+    bottom: 93.41%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+}
+
+.share {
+    background-color: $grey;
+    position: absolute;
+    left: 85.6%;
+    right: 6.4%;
+    top: 2.93%;
+    bottom: 93.41%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+}
+
+.lllll {
+    color: $white
+}
