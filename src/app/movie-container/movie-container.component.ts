@@ -11,9 +11,9 @@ import { CommonModule } from "@angular/common";
 export class MovieContainerComponent {
 
   constructor() {
-    this.title = "";
+    this.title = '';
     this.genresName = [];
-    this.backdrop_path = "";
+    this.backdrop_path = '';
     this.vote_average = 0;
   }
 

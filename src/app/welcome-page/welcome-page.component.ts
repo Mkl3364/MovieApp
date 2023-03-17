@@ -8,6 +8,8 @@ import { tap } from "rxjs";
 import { MoviesService } from "../movies/movies.service";
 import { RegisterFormService } from "./register.service";
 import { LoginFormService } from "../welcome-page/login.service";
+import { apiService } from "src/api.service";
+
 
 @Component({
   standalone: true,
@@ -22,13 +24,13 @@ export class WelcomePageComponent implements OnInit {
   loginPassword: string;
   registerEmail: string;
   registerPassword: string;
-  getAllDatas$ = this.moviesService.getMovies();
+  getAllDatas$ = this.apiService.getMovies();
   randomImage: string;
   randomName: string;
   getStartedIsClicked: boolean;
   registerIsClicked: boolean;
 
-  constructor(private readonly moviesService: MoviesService, private readonly db: FormBuilder, public loginAuthentication: LoginFormService, public authent: AngularFireAuth, private router: Router, public registerService: RegisterFormService) {
+  constructor(private readonly moviesService: MoviesService, private readonly db: FormBuilder, public loginAuthentication: LoginFormService, public authent: AngularFireAuth, private router: Router, public registerService: RegisterFormService, private readonly apiService: apiService) {
     this.randomImage = '';
     this.randomName = '';
     this.getStartedIsClicked = false;

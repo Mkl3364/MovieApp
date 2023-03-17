@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { MoviesService } from '../movie-carousel/movie-carousel.service';
 import { map, tap } from 'rxjs';
+import { apiService } from "src/api.service";
+
 import { MovieContainerComponent } from '../movie-container/movie-container.component';
 
 interface dataMovies {
@@ -26,11 +28,11 @@ interface genre {
 })
 
 export class MovieCarouselComponent implements OnInit {
-	movies$ = this.moviesService.getMovies();
-	genres$ = this.moviesService.getGenres();
+	movies$ = this.apiService.getMovies();
+	genres$ = this.apiService.getGenres();
 	dataMovies: dataMovies[] = [];
 
-	constructor(private readonly moviesService: MoviesService) { }
+	constructor(private readonly moviesService: MoviesService, private readonly apiService: apiService) { }
 
 	ngOnInit() {
 		this.movies$.pipe(

@@ -22,7 +22,7 @@ interface genre {
 })
 export class MoviesComponent implements OnInit {
 
-    movies$ = this.moviesService.getMovies();
+    movies$ = this.apiService.getMovies();
     genre$ = this.apiService.getGenres();
     recentMovies: object[] | any;
     genres: genre[];
