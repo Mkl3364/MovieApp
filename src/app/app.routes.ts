@@ -5,6 +5,7 @@ import { ForgotPasswordComponent } from './forgotPassword/forgotPassword.compone
 import { ResetPasswordComponent } from './passwordReset/passwordReset.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SearchComponent } from './search/search.component';
 
 export const appRoutes: Route[] = [
     {
@@ -29,4 +30,9 @@ export const appRoutes: Route[] = [
         component: MoviesComponent,
         canActivate: [AngularFireAuthGuard]
     },
-];
+    {
+        path: 'search/:query',
+        component: SearchComponent,
+        canActivate: [AngularFireAuthGuard]
+    }
+]
