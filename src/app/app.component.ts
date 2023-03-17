@@ -20,7 +20,7 @@ initializeApp(environment.firebase);
 })
 
 export class AppComponent {
-  title(title: any) {
+  titleApp(titleApp: string) {
     throw new Error('Method not implemented.');
   }
 

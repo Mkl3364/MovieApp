@@ -38,13 +38,12 @@ export class NotificationPushComponent {
   listen() {
     const messaging = getMessaging();
     onMessage(messaging, (payload) => {
-      console.log('Message received. ', payload);
       this.message = payload;
     });
   }
 
   sendNotification() {
-    this.messageTitle = 'Je suis la';
-    this.messageBody = 'Ouais jai un gros zizi';
+    this.messageTitle = '';
+    this.messageBody = '';
   }
 }
