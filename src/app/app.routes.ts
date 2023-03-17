@@ -1,20 +1,15 @@
 import { Route } from '@angular/router';
-import { LoginComponent } from './login/login.component';
 import { MoviesComponent } from './movies/movies.component';
-import { RegisterComponent } from './register/register.component';
 import { AngularFireAuthGuard } from '@angular/fire/compat/auth-guard';
 import { ForgotPasswordComponent } from './forgotPassword/forgotPassword.component';
 import { ResetPasswordComponent } from './passwordReset/passwordReset.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { ProfileComponent } from './profile/profile.component';
 
 export const appRoutes: Route[] = [
     {
         path: '',
-        component: LoginComponent,
-    },
-    {
-        path: 'register',
-        component: RegisterComponent
+        component: WelcomePageComponent,
     },
     {
         path: 'forgotPassword',

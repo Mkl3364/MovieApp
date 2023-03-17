@@ -20,14 +20,5 @@ export class TestDatabaseComponent {
     constructor(private afs: AngularFirestore) {
         this.itemsCollection = afs.collection<Movie>('movies');
         this.items = this.itemsCollection.valueChanges();
-    }
-    
-    // getMovies() {
-    //     this.firestore.collection('movies')
-    //     .valueChanges()
-    //     .subscribe(docs => {
-    //         docs.forEach(doc => console.log(doc));
-    //     });
-    // }
- 
+    } 
 }

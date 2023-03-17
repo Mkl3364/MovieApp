@@ -47,3 +47,4 @@ export class NotificationPushComponent {
     this.messageBody = '';
   }
 }
+
