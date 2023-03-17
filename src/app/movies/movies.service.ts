@@ -8,8 +8,6 @@ import { Observable } from "rxjs";
 export class MoviesService {
     constructor(private httpClient: HttpClient) {
 
-        // console.log(this.getMovies())
-
     }
 
     public getMovies(): Observable<any> {

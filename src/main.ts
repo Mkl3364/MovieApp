@@ -11,6 +11,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -24,6 +25,7 @@ bootstrapApplication(AppComponent, {
       importProvidersFrom(AngularFireAuthModule),
       importProvidersFrom(AngularFirestoreModule),
       importProvidersFrom(AngularFireStorageModule),
+      importProvidersFrom(AngularFireMessaging),
       provideHttpClient(),
       provideRouter(appRoutes)
   ],
