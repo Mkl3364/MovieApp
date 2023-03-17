@@ -27,6 +27,8 @@
             [backdrop_path]="movie.backdrop_path ? movie.backdrop_path : movie.poster_path"
             [vote_average]="movie.vote_average" [release_date]="movie.release_date" />
     </ul>
+
+    <tp-movies-pagination [totalPages]="totalPages" [currentPage]="currentPage" (pageChanged)="onPageChanged($event)" />
 </section>
 
 <tp-movies-footer></tp-movies-footer>
