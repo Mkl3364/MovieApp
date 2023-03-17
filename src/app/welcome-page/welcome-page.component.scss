@@ -1,16 +1,24 @@
 @import '../../variables';
 
 .welcome-page{
+    height: 100vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
     text-align: center;
     background-color: $black;
     color: $white;
     width: 100%;
     padding: 1rem;
-}
-.main-image{
-    width: 100%;
-    clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
-    border-radius: 2rem 2rem 0rem 0rem;
+
+    .child-welcome-page{
+        padding: 3rem;
+    }
+
+    .main-image{
+        width: 30%;
+        border-radius: 2rem;
+    }
 }
 .title{
     margin-top: 2rem;
@@ -30,6 +38,7 @@
     width: 100%;
 }
 .content-auth-page{
+    max-width: 50rem;
     color: $white;
     position: fixed;
     background-color: $black;
@@ -41,6 +50,12 @@
     border-radius: 1rem;
     
     .first-page{
+        margin-top: 1rem;
+
+        .container-input-label{
+            margin-bottom: 1rem;
+        }
+
         button{
             margin-top: 1rem;
             margin-bottom: 1rem;
@@ -50,6 +65,7 @@
         }
         .no-password{
             color: $white;
+            cursor: pointer;
         }
 
         .inputs{
@@ -58,9 +74,13 @@
         }
     }
 
+    .reset-pwd-message{
+        margin-top: 1rem;
+    }
+
     .close-img{
+        cursor: pointer;
         width: 3rem;
-        float: right;
     }
     .align-items{
         display: flex;
@@ -68,20 +88,51 @@
 }
 
 .title-auth{
+    margin-top: 1.5rem;
     text-align: center;
 }
 
 .social-network-connexion{
     margin-top: 1rem;
+    width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
 
     img{
-        width: 5rem;
+        padding: 0rem 1rem;
+        width: 6rem;
+        cursor: pointer;
     }
 }
 
 .account{
+    cursor: pointer;
     margin-top: 2rem;
     text-align: center;
 }
+
+@media screen and (max-width: 900px) {
+    .desktop-element{
+        display: none;
+    }
+    .welcome-page{
+        height: auto;
+        display: block;
+        text-align: center;
+        background-color: $black;
+        color: $white;
+        width: 100%;
+        padding: 1rem;
+    
+        .child-welcome-page{
+            padding: 3rem;
+        }
+    
+        .main-image{
+            height: 80%;
+            width: inherit;
+            clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+            border-radius: 4rem 4rem 0rem 4rem;
+        }
+    }
+  }
