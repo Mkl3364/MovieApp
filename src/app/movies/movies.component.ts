@@ -1,9 +1,13 @@
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { MoviesService } from "./movies.service";
 import { Router, RouterLink } from "@angular/router";
+import { Store } from "@ngrx/store";
+import { AngularFireAuth } from "@angular/fire/compat/auth";
+import { userLogged } from "../state/user.action";
+import { userLogSelector } from "../state/user.selector";
 //import { UserImageComponent } from '../user-image/user-image.component';
 
 @Component({
@@ -15,7 +19,22 @@ import { Router, RouterLink } from "@angular/router";
 })
 export class MoviesComponent {
     movies$ = this.moviesService.getMoviesPopular();
-    constructor(private readonly moviesService: MoviesService, private router: Router) {
-
+    public userData: any;
+    constructor(private readonly moviesService: MoviesService, private router: Router, private store: Store, public auth: AngularFireAuth) {
+        this.auth.authState.subscribe((user) => {
+            if (user) {
+              this.store.dispatch(userLogged({user : {
+                displayName: user.displayName,
+                email: user.email,
+                photoURL: user.photoURL
+              }}))
+              this.store.select(userLogSelector).pipe(
+                ).subscribe(user => {
+                  console.log('data', user);
+                })
+            } else {
+                console.log("no user")
+            }
+          });
     }
 }
