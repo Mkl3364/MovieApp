@@ -1,12 +1,12 @@
-<!-- <button (click)="sendNotification()">Envoyer une notification push</button> -->
+<button (click)="sendNotification()">Envoyer une notification push</button>
 
 <head>
 	<link rel="manifest" href="../manifest.json">
 </head>
 
-<div *ngIf="message;">
-	<h1>{{ message.notification.title }}</h1>
-	<h2>{{ message.notification.body }}</h2>
+<div *ngIf="messageTitle || messageBody">
+	<h1>{{ messageTitle }}</h1>
+	<h2>{{ messageBody }}</h2>
 </div>
 <div *ngIf="!message;">
 	No Message Arrived

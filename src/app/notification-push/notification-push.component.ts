@@ -13,7 +13,10 @@ import { CommonModule } from '@angular/common';
 export class NotificationPushComponent {
   title = 'af-notification';
   message: any = null;
-  constructor() { }
+  messageTitle: string | undefined;
+  messageBody: string | undefined;
+  constructor() {
+  }
   ngOnInit(): void {
     this.requestPermission();
     this.listen();
@@ -39,5 +42,11 @@ export class NotificationPushComponent {
       console.log('Message received. ', payload);
       this.message = payload;
     });
+  }
+
+  sendNotification() {
+    console.log('COUCOU')
+    this.messageTitle = 'Je suis la';
+    this.messageBody = 'Ouais jai un gros zizi';
   }
 }
