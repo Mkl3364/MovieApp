@@ -5,9 +5,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { Router, RouterLink, RouterOutlet } from "@angular/router";
 import firebase from 'firebase/compat/app';
 import { tap } from "rxjs";
-import { MoviesService } from "../movies/movies.service";
-import { RegisterFormService } from "./register.service";
-import { LoginFormService } from "../welcome-page/login.service";
+import { AuthService } from "../welcome-page/auth.service";
 import { apiService } from "src/api.service";
 
 
@@ -24,17 +22,23 @@ export class WelcomePageComponent implements OnInit {
   loginPassword: string;
   registerEmail: string;
   registerPassword: string;
+  resetPassword: boolean;
   getAllDatas$ = this.apiService.getMovies();
   randomImage: string;
   randomName: string;
   getStartedIsClicked: boolean;
   registerIsClicked: boolean;
+  emailSent: boolean;
+  emailForgotPassword: string;
 
-  constructor(private readonly moviesService: MoviesService, private readonly db: FormBuilder, public loginAuthentication: LoginFormService, public authent: AngularFireAuth, private router: Router, public registerService: RegisterFormService, private readonly apiService: apiService) {
+  constructor( private readonly db: FormBuilder, public AuthService: AuthService, public authent: AngularFireAuth, private router: Router, private readonly apiService: apiService) {
     this.randomImage = '';
     this.randomName = '';
     this.getStartedIsClicked = false;
     this.registerIsClicked = false;
+    this.resetPassword = false;
+    this.emailSent = false;
+    this.emailForgotPassword = this.forgotPwdForm.value.emailForgotPassword ?? ""
 
     this.loginEmail = this.loginForm.value.loginEmail ?? '';
     this.loginPassword = this.loginForm.value.loginPassword ?? '';
@@ -42,6 +46,10 @@ export class WelcomePageComponent implements OnInit {
     this.registerEmail = this.registerForm.value.registerEmail ?? '';
     this.registerPassword = this.registerForm.value.registerPassword ?? '';
   }
+
+  forgotPwdForm = this.db.group({
+    emailForgotPassword: ['', Validators.required]
+  })
 
   registerForm = this.db.group({
     registerEmail: ['', Validators.required],
@@ -66,7 +74,7 @@ export class WelcomePageComponent implements OnInit {
   }
 
   SignIn() {
-    this.loginAuthentication.SignIn(this.loginEmail, this.loginPassword);
+    this.AuthService.SignIn(this.loginEmail, this.loginPassword);
 
     this.loginEmail = ''
     this.loginPassword = ''
@@ -80,13 +88,14 @@ export class WelcomePageComponent implements OnInit {
     this.authent.signInWithPopup(new firebase.auth.GithubAuthProvider()).then(() => this.router.navigateByUrl('movies'));
   }
 
-  forgotPasswordSubmit(loginEmail: string) {
-    this.loginAuthentication.ForgotPassword(loginEmail);
+  forgotPasswordSubmit() {
+    this.AuthService.ForgotPassword(this.emailForgotPassword);
+    this.emailForgotPassword = '';
+    this.emailSent = true;
   }
 
   onSubmitRegister() {
-    console.log('suis la !')
-    this.registerService.SignUp(this.registerEmail, this.registerPassword);
+    this.AuthService.SignUp(this.registerEmail, this.registerPassword);
     this.registerEmail = '';
     this.registerPassword = '';
   }
