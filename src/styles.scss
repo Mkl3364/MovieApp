@@ -23,6 +23,7 @@ html {
 
 button {
     @include btn;
+    cursor: pointer;
 }
 
 
