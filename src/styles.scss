@@ -1,8 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Ubuntu:wght@700&display=swap');
 
 @import './_variables.scss';
 
+@font-face {
+font-family: 'Inter-font';
+src: url('assets/fonts/Inter/Inter-VariableFont_slnt,wght.ttf');
+}
 
 * {
     margin: 0;
@@ -13,7 +16,7 @@
 
 html {
     font-size: 62.5%;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inter-font';
 }
 
 
@@ -35,7 +38,6 @@ button {
     gap: 1rem;
     width: 80%;
     margin-inline: auto;
-    margin-bottom: 2rem;
 
 
     .search-input {

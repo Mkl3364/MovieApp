@@ -5,12 +5,15 @@ import { FooterComponent } from "../footer/footer.component";
 import { PaginationComponent } from "../pagination/pagination.component";
 import { MovieCarouselComponent } from "../movie-carousel/movie-carousel.component";
 import { MoviesService } from "./movies.service";
+import { Router, RouterLink } from "@angular/router";
+import { Store } from "@ngrx/store";
+import { AngularFireAuth } from "@angular/fire/compat/auth";
+import { userLogged } from "../state/user.action";
+import { userLogSelector } from "../state/user.selector";
+//import { UserImageComponent } from '../user-image/user-image.component';
 import { MovieContainerCommonComponent } from "../movie-container-common/movie-container-common.component";
 import { apiService } from "src/api.service";
 import { tap } from "rxjs";
-import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { Router } from '@angular/router';
-import { SearchContainerComponent } from "../search-container/search-container.component";
 
 interface genre {
     id: number,
@@ -21,33 +24,44 @@ interface genre {
     standalone: true,
     selector: "tp-movies-movies-api",
     templateUrl: "./movies.component.html",
-    styleUrls: ['./movies.component.scss'],
-    imports: [CommonModule, HeaderComponent, FooterComponent, MovieCarouselComponent, MovieContainerCommonComponent, PaginationComponent, ReactiveFormsModule, SearchContainerComponent]
+    styleUrls: [],
+    imports: [CommonModule, HeaderComponent, FooterComponent, RouterLink]
 })
 export class MoviesComponent implements OnInit {
 
     movies$ = this.apiService.getMovies();
     genre$ = this.apiService.getGenres();
+    // movies$ = this.moviesService.getMoviesPopular();
+    public userData: any;
     recentMovies: object[] | any;
     genres: genre[];
     genreId: number;
     currentPage: number;
     totalPages: number;
-    query: string;
 
-    constructor(private readonly db: FormBuilder, private readonly moviesService: MoviesService, private readonly apiService: apiService, private router: Router) {
+    constructor(private readonly moviesService: MoviesService, private readonly apiService: apiService, private auth: AngularFireAuth, private store: Store) {
         this.genres = [];
         this.genreId = 0;
         this.recentMovies = [];
         this.currentPage = 1;
         this.totalPages = 5;
-        this.query = this.searchForm.value.query ?? ''
+
+        this.auth.authState.subscribe((user) => {
+            if (user) {
+              this.store.dispatch(userLogged({user : {
+                displayName: user.displayName,
+                email: user.email,
+                photoURL: user.photoURL
+              }}))
+              this.store.select(userLogSelector).pipe(
+                ).subscribe(user => {
+                  console.log('data', user);
+                })
+            } else {
+                console.log("no user")
+            }
+          });   
     }
-
-
-    searchForm = this.db.group({
-        query: ['', Validators.required]
-    })
 
     ngOnInit(): void {
         this.genre$.pipe(
@@ -91,6 +105,4 @@ export class MoviesComponent implements OnInit {
             })).subscribe();
         }
     }
-
-
 }
