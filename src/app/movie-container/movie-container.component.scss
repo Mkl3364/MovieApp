@@ -1,0 +1,56 @@
+@import '../../variables.scss';
+
+.carousel-wrapper {
+    display: flex;
+    width: 75vw;
+    flex-direction: column;
+    background-color: $grey;
+    justify-content: flex-end;
+    aspect-ratio: 16/9;
+    border-radius: 15px;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    .info-play-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, .3), rgba(0, 0, 0, .7));
+
+        .info-container {
+
+            .title {
+                font-size: 1.25rem;
+            }
+
+            .rate-hour-theme-container {
+                margin-top: 1rem;
+                display: flex;
+                gap: 2rem;
+                align-items: center;
+                font-size: 1rem;
+
+                .rate-container {
+                    background-color: $grey;
+                    display: flex;
+                    align-items: center;
+                    padding: 0.5rem;
+                    gap: .5rem;
+                    border-radius: 5px;
+                }
+
+                .genre-container {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    width: 100px;
+                }
+            }
+        }
+    }
+}
+
+p {
+    color: $white;
+}

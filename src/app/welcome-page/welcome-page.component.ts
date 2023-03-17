@@ -8,27 +8,29 @@ import { tap } from "rxjs";
 import { MoviesService } from "../movies/movies.service";
 import { RegisterFormService } from "./register.service";
 import { LoginFormService } from "../welcome-page/login.service";
+import { apiService } from "src/api.service";
+
 
 @Component({
-    standalone: true,
-    selector: 'tp-movies-welcome-page',
-    templateUrl: './welcome-page.component.html',
-    styleUrls: ['./welcome-page.component.scss'],
-    imports: [ReactiveFormsModule, CommonModule, RouterLink, RouterOutlet]
+  standalone: true,
+  selector: 'tp-movies-welcome-page',
+  templateUrl: './welcome-page.component.html',
+  styleUrls: ['./welcome-page.component.scss'],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, RouterOutlet]
 })
-export class WelcomePageComponent implements OnInit{
+export class WelcomePageComponent implements OnInit {
 
   loginEmail: string;
   loginPassword: string;
   registerEmail: string;
   registerPassword: string;
-  getAllDatas$ = this.moviesService.getMoviesPopular();
+  getAllDatas$ = this.apiService.getMovies();
   randomImage: string;
   randomName: string;
   getStartedIsClicked: boolean;
   registerIsClicked: boolean;
 
-  constructor (private readonly moviesService: MoviesService, private readonly db: FormBuilder, public loginAuthentication: LoginFormService, public authent: AngularFireAuth, private router: Router, public registerService: RegisterFormService) {
+  constructor(private readonly moviesService: MoviesService, private readonly db: FormBuilder, public loginAuthentication: LoginFormService, public authent: AngularFireAuth, private router: Router, public registerService: RegisterFormService, private readonly apiService: apiService) {
     this.randomImage = '';
     this.randomName = '';
     this.getStartedIsClicked = false;
@@ -46,9 +48,9 @@ export class WelcomePageComponent implements OnInit{
     registerPassword: ['', Validators.required]
   })
 
-    loginForm = this.db.group({
-      loginEmail: ['', Validators.required],
-      loginPassword: ['', Validators.required]
+  loginForm = this.db.group({
+    loginEmail: ['', Validators.required],
+    loginPassword: ['', Validators.required]
   })
 
   ngOnInit() {
@@ -67,7 +69,7 @@ export class WelcomePageComponent implements OnInit{
     this.loginAuthentication.SignIn(this.loginEmail, this.loginPassword);
 
     this.loginEmail = ''
-    this.loginPassword= ''
+    this.loginPassword = ''
   }
 
   login() {
@@ -87,5 +89,5 @@ export class WelcomePageComponent implements OnInit{
     this.registerService.SignUp(this.registerEmail, this.registerPassword);
     this.registerEmail = '';
     this.registerPassword = '';
-  }  
+  }
 }

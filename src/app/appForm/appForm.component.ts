@@ -37,8 +37,4 @@ export class AppFormComponent {
         this.authenticationService.AddDatabase(this.title)
         this.title = ''
     }
-
-    onSubmit() { 
-        console.log(this.profileForm.value)
-    } 
 }

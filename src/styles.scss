@@ -21,3 +21,35 @@ html {
 button {
     @include btn;
 }
+
+
+
+.search-input-container {
+    position: relative;
+    background-color: $input-bg;
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 80%;
+    margin-inline: auto;
+
+
+    .search-input {
+        border: none;
+        background-color: $input-bg;
+        color: $white;
+        width: 100%;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    img {
+        border-left: solid 2px $grey;
+        padding-left: 1rem;
+    }
+}
