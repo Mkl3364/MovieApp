@@ -1,0 +1,17 @@
+<tp-movies-header></tp-movies-header>
+<div class="search-page-container">
+    <tp-movies-search-container (queryChange)="getMovies($event)" />
+    <div class="search-result-container">
+        <h1 class="query">Search for: {{query}}</h1>
+        <p class="results">{{totalResults}} Résultat<span *ngIf="totalResults>1">s</span></p>
+    </div>
+    <ul class="movies-list-container">
+        <tp-movies-movie-container-common *ngFor="let movie of movies.results" [title]="movie.title"
+            [backdrop_path]="movie.backdrop_path ? movie.backdrop_path : movie.poster_path"
+            [vote_average]="movie.vote_average" [release_date]="movie.release_date" />
+    </ul>
+
+    <tp-movies-pagination [totalPages]="totalPages" [currentPage]="currentPage" (pageChanged)="onPageChanged($event)" />
+</div>
+
+<tp-movies-footer></tp-movies-footer>

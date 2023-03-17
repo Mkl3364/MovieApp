@@ -14,6 +14,9 @@ import { userLogSelector } from "../state/user.selector";
 import { MovieContainerCommonComponent } from "../movie-container-common/movie-container-common.component";
 import { apiService } from "src/api.service";
 import { tap } from "rxjs";
+import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
+import { Router } from '@angular/router';
+import { SearchContainerComponent } from "../search-container/search-container.component";
 
 interface genre {
     id: number,
@@ -24,8 +27,8 @@ interface genre {
     standalone: true,
     selector: "tp-movies-movies-api",
     templateUrl: "./movies.component.html",
-    styleUrls: [],
-    imports: [CommonModule, HeaderComponent, FooterComponent, RouterLink]
+    styleUrls: ['./movies.component.scss'],
+    imports: [CommonModule, HeaderComponent, RouterLink, FooterComponent, MovieCarouselComponent, MovieContainerCommonComponent, PaginationComponent, ReactiveFormsModule, SearchContainerComponent]
 })
 export class MoviesComponent implements OnInit {
 
@@ -38,8 +41,10 @@ export class MoviesComponent implements OnInit {
     genreId: number;
     currentPage: number;
     totalPages: number;
+    query: string;
 
-    constructor(private readonly moviesService: MoviesService, private readonly apiService: apiService, private auth: AngularFireAuth, private store: Store) {
+    constructor(private readonly db: FormBuilder, private readonly moviesService: MoviesService, private readonly apiService: apiService, private router: Router, private auth: AngularFireAuth, private store: Store) {
+    
         this.genres = [];
         this.genreId = 0;
         this.recentMovies = [];
@@ -61,7 +66,15 @@ export class MoviesComponent implements OnInit {
                 console.log("no user")
             }
           });   
+
+        this.query = this.searchForm.value.query ?? ''
+
     }
+
+
+    searchForm = this.db.group({
+        query: ['', Validators.required]
+    })
 
     ngOnInit(): void {
         this.genre$.pipe(
@@ -105,4 +118,6 @@ export class MoviesComponent implements OnInit {
             })).subscribe();
         }
     }
+
+
 }

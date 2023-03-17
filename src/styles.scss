@@ -23,6 +23,7 @@ html {
 
 button {
     @include btn;
+    cursor: pointer;
 }
 
 
@@ -38,6 +39,7 @@ button {
     gap: 1rem;
     width: 80%;
     margin-inline: auto;
+    margin-bottom: 2rem;
 
 
     .search-input {
