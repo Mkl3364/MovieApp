@@ -1,0 +1,23 @@
+<div class="carousel-wrapper"
+    [ngStyle]="{'background-image': 'url(https://image.tmdb.org/t/p/w500/' + backdrop_path + ')'}">
+    <div class="info-play-container">
+        <div class="info-container">
+            <p class="title">{{title}}</p>
+            <div class="rate-hour-theme-container">
+                <div class="rate-container">
+                    <img src="../../assets/img/star-icon.svg" alt="Star Icon">
+                    {{vote_average}}
+                </div>
+                <p>1h45min</p>
+                <p class="genre-container">
+                    <span *ngFor="let genre of genresName;let isLast = last;"> {{genre}}<span *ngIf="!isLast">, </span>
+
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div class="play">
+            <img src="../../assets/img/play-icon.svg" alt="Play Icon">
+        </div>
+    </div>
+</div>

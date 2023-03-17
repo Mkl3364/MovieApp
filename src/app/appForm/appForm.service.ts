@@ -63,6 +63,6 @@ export class AppFormService {
   }
 
   AddDatabase(title: string) {
-    this.afs.collection('movies').add({title})
+    this.afs.collection('movies').add({ title })
   }
 }
