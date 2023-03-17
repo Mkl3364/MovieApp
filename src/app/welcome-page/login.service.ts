@@ -17,6 +17,7 @@ export class LoginFormService {
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
         console.log(result)
+        this.router.navigateByUrl('movies');
       })
       .catch((error) => {
         window.alert(error.message);
@@ -32,7 +33,6 @@ export class LoginFormService {
         window.alert(error);
       });
   }
-  // Sign out
   SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');

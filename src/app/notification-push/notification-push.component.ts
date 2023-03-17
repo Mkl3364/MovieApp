@@ -48,3 +48,4 @@ export class NotificationPushComponent {
     this.messageBody = 'Ouais jai un gros zizi';
   }
 }
+
