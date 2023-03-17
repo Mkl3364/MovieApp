@@ -1,5 +1,5 @@
 <div class="welcome-page">
-    <img class="main-image" src="https://image.tmdb.org/t/p/w500/{{randomImage}}" alt ='{{randomName}}' />
+    <img class="main-image" src="https://image.tmdb.org/t/p/w500/{{randomImage}}" alt='{{randomName}}' />
 
     <h1 class="title">
         Watch movie anywhere. anytime.
@@ -13,9 +13,10 @@
 
 <div class="auth-page" *ngIf="getStartedIsClicked">
     <div class="content-auth-page">
-        <img class="close-img" (click)="getStartedIsClicked = false" src="../../assets/img/cross.svg" alt="close popup" />
+        <img class="close-img" (click)="getStartedIsClicked = false" src="../../assets/img/cross.svg"
+            alt="close popup" />
         <h2 class="title-auth"> Login </h2>
-        
+
         <div class="first-page">
             <form [formGroup]="loginForm">
                 <div>
@@ -24,19 +25,20 @@
                 </div>
                 <div>
                     <label>Password</label> <br />
-                    <input class="inputs" type="password" formControlName="loginPassword" placeholder="******"/>
+                    <input class="inputs" type="password" formControlName="loginPassword" placeholder="******" />
                 </div>
             </form>
             <a class="no-password" routerLink="forgotPassword">Mot de passe oublié ?</a>
             <button [disabled]="!loginForm.valid" (click)="SignIn()">Submit</button>
-        
+
             <h2 class="title-auth"> Login with </h2>
             <div class="social-network-connexion">
                 <img (click)="SignInWithGithub()" src="../../assets/img/github.svg" alt="login with github">
-                <img (click)="login()" src="../../assets/img/google.svg" alt="login with google">  
-            </div>   
-            
-            <p (click)="registerIsClicked = true; getStartedIsClicked= false;" class="account">Pas de compte ? Register</p>
+                <img (click)="login()" src="../../assets/img/google.svg" alt="login with google">
+            </div>
+
+            <p (click)="registerIsClicked = true; getStartedIsClicked= false;" class="account">Pas de compte ? Register
+            </p>
         </div>
     </div>
 </div>
@@ -49,15 +51,17 @@
             <form [formGroup]="registerForm">
                 <div>
                     <label>Email</label> <br />
-                    <input class="inputs" type="email" formControlName="registerEmail" placeholder="example@example.com">
+                    <input class="inputs" type="email" formControlName="registerEmail"
+                        placeholder="example@example.com">
                 </div>
                 <div>
                     <label>Password</label> <br />
-                    <input class="inputs" type="password" formControlName="registerPassword" placeholder="******"/>
+                    <input class="inputs" type="password" formControlName="registerPassword" placeholder="******" />
                 </div>
             </form>
             <button [disabled]="!registerForm.valid" (click)="onSubmitRegister()">Submit register form</button>
-            <p class="account" (click)="registerIsClicked = false; getStartedIsClicked = true;" >Déjà un compte ? Login</p>
+            <p class="account" (click)="registerIsClicked = false; getStartedIsClicked = true;">Déjà un compte ? Login
+            </p>
         </div>
     </div>
 </div>
