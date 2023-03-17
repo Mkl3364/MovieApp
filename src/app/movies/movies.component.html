@@ -1,9 +1,6 @@
 <tp-movies-header></tp-movies-header>
 <section class="homepage-container" *ngIf="movies$ | async as movie">
-    <div class="search-input-container">
-        <input class="search-input" type="text" placeholder="What are you watching today">
-        <img src="../../assets/img/search-icon.svg" alt="Search Icon">
-    </div>
+    <tp-movies-search-container />
 
     <h2>A la une</h2>
 
