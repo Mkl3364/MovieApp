@@ -27,7 +27,6 @@ export class NotificationPushComponent {
       { vapidKey: environment.firebase.vapidKey }).then(
         (currentToken) => {
           if (currentToken) {
-            console.log("Hurraaa!!! we got the token.....");
             console.log(currentToken);
           } else {
             console.log('No registration token available. Request permission to generate one.');
@@ -45,7 +44,6 @@ export class NotificationPushComponent {
   }
 
   sendNotification() {
-    console.log('COUCOU')
     this.messageTitle = 'Je suis la';
     this.messageBody = 'Ouais jai un gros zizi';
   }

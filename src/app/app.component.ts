@@ -8,6 +8,7 @@ import { TestDatabaseComponent } from './testDatabase/testDatabase.component';
 import { UserImageComponent } from './user-image/user-image.component';
 import { environment } from "../environments/environment";
 import { initializeApp } from "firebase/app";
+import { ServiceWorkerModule } from '@angular/service-worker';
 initializeApp(environment.firebase);
 
 @Component({
@@ -15,7 +16,7 @@ initializeApp(environment.firebase);
   selector: 'tp-movies-selector',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [RouterOutlet, CommonModule, MoviesComponent, AppFormComponent, RouterLink, TestDatabaseComponent, HeaderComponent, UserImageComponent],
+  imports: [RouterOutlet, CommonModule, MoviesComponent, AppFormComponent, RouterLink, TestDatabaseComponent, HeaderComponent, UserImageComponent, ServiceWorkerModule],
 })
 
 export class AppComponent {

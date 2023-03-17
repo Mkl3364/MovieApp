@@ -5,6 +5,18 @@
     "src/firebase-messaging-sw.js",
     "src/manifest.json"
   ],
+  "configurations": {
+    "production": {
+      "fileReplacements": [
+        {
+          "replace": "src/environments/environment.ts",
+          "with": "src/environments/environment.prod.ts"
+        }
+      ],
+      "serviceWorker": true,
+      "ngswConfigPath": "src/ngsw-config.json"
+    }
+  },
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "npmScope": "tp-movies",
   "tasksRunnerOptions": {
