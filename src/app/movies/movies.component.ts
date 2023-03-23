@@ -15,7 +15,6 @@ import { MovieContainerCommonComponent } from "../movie-container-common/movie-c
 import { apiService } from "src/api.service";
 import { tap } from "rxjs";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { Router } from '@angular/router';
 import { SearchContainerComponent } from "../search-container/search-container.component";
 
 interface genre {
@@ -44,7 +43,7 @@ export class MoviesComponent implements OnInit {
     query: string;
 
     constructor(private readonly db: FormBuilder, private readonly moviesService: MoviesService, private readonly apiService: apiService, private router: Router, private auth: AngularFireAuth, private store: Store) {
-    
+
         this.genres = [];
         this.genreId = 0;
         this.recentMovies = [];
@@ -53,19 +52,21 @@ export class MoviesComponent implements OnInit {
 
         this.auth.authState.subscribe((user) => {
             if (user) {
-              this.store.dispatch(userLogged({user : {
-                displayName: user.displayName,
-                email: user.email,
-                photoURL: user.photoURL
-              }}))
-              this.store.select(userLogSelector).pipe(
+                this.store.dispatch(userLogged({
+                    user: {
+                        displayName: user.displayName,
+                        email: user.email,
+                        photoURL: user.photoURL
+                    }
+                }))
+                this.store.select(userLogSelector).pipe(
                 ).subscribe(user => {
-                  console.log('data', user);
+                    console.log('data', user);
                 })
             } else {
                 console.log("no user")
             }
-          });   
+        });
 
         this.query = this.searchForm.value.query ?? ''
 
