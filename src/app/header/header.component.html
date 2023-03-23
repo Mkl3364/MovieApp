@@ -4,6 +4,14 @@
         <span class="header-title">Ndelok</span>
     </span>
     <span class="header-notification">
-        <img src="../../assets/img/notifications.svg" alt="Notification Icon" />
+        <img (click)="notifications()" src="../../assets/img/notifications.svg" alt="Notification Icon" />
+        <div class="container-notification" *ngIf="notificationIsOpen">
+            chibre
+            <ul>
+                <li *ngFor="let item of items | async">
+                  {{ item }}
+                </li>
+              </ul>
+        </div>
     </span>
 </header>
