@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { MoviesService } from "./movies.service";
@@ -26,7 +26,10 @@ export class MoviesComponent {
               this.store.dispatch(userLogged({user : {
                 displayName: user.displayName,
                 email: user.email,
-                photoURL: user.photoURL
+                photoURL: user.photoURL,
+                uid: user.uid,
+                isLogged: true,
+                moviesLiked: []
               }}))
               this.store.select(userLogSelector).pipe(
                 ).subscribe(user => {

@@ -18,8 +18,9 @@ export interface UserInterface {
     displayName: string | null
     email: string | null
     photoURL: string | null
-    // isLogged : boolean
-    // moviesLiked: Movie[]
+    uid: string
+    isLogged : boolean
+    moviesLiked: Movie[]
 }
 
 export interface Genre {

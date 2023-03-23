@@ -13,7 +13,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 import { provideState, provideStore } from "@ngrx/store";
-import { featureKey, likesReducer } from "./app/state/like.reducer";
+// import { featureKey, likesReducer } from "./app/state/like.reducer";
 import { provideStoreDevtools } from "@ngrx/store-devtools";
 import { featureUserKey, userReducer } from "./app/state/user.reducer";
 
@@ -32,7 +32,7 @@ bootstrapApplication(AppComponent, {
       importProvidersFrom(AngularFireMessaging),
       provideHttpClient(),
       provideStore(),
-      provideState(featureKey, likesReducer),
+    //   provideState(featureKey, likesReducer),
       provideState(featureUserKey, userReducer),
       provideStoreDevtools(),
       provideRouter(appRoutes),

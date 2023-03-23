@@ -30,8 +30,15 @@
                 </li>
             </ul>
         </div>
-        <div class="like-container" *ngIf="liked; else elseBlock">
+        <div class="like-container" *ngIf="userIsLogged$; else elseBlock">
             <img src="../../assets/img/like-full-heart.svg" loading="lazy" class="like-movie" (click)="addMovieToLikes(movie)"/>
+            <!-- <div>
+                <img src="../../assets/img/like-heart.svg" loading="lazy" class="like-movie" (click)="addMovieToLikes(movie)"/>
+                <img src="../../assets/img/like-heart.svg" loading="lazy" class="like-movie" (click)="addMovieToLikes(movie)"/>
+                <img src="../../assets/img/like-heart.svg" loading="lazy" class="like-movie" (click)="addMovieToLikes(movie)"/>
+                <img src="../../assets/img/like-heart.svg" loading="lazy" class="like-movie" (click)="addMovieToLikes(movie)"/>
+                <img src="../../assets/img/like-heart.svg" loading="lazy" class="like-movie" (click)="addMovieToLikes(movie)"/>
+            </div> -->
         </div>
         <ng-template #elseBlock><img src="../../assets/img/like-heart.svg" loading="lazy" class="like-movie" (click)="addMovieToLikes(movie)"/></ng-template>
     </div>
