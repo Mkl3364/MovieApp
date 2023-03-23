@@ -4,6 +4,17 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    opacity: 0;
+    transition: .6s .4s;
+    transform: translateY(15px);
+
+
+
+    &.show {
+        transform: translateY(0);
+        opacity: 1;
+
+    }
 
     img {
         width: 100%;
