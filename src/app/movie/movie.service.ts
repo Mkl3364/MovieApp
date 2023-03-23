@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 
 
 export interface Movie {
+    userUid: string;
     adult: boolean
     genres : Genre[]
     original_title: string
@@ -20,7 +21,6 @@ export interface UserInterface {
     photoURL: string | null
     uid: string
     isLogged : boolean
-    moviesLiked: Movie[]
 }
 
 export interface Genre {

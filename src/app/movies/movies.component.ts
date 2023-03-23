@@ -21,23 +21,5 @@ export class MoviesComponent {
     movies$ = this.moviesService.getMoviesPopular();
     public userData: any;
     constructor(private readonly moviesService: MoviesService, private router: Router, private store: Store, public auth: AngularFireAuth) {
-        this.auth.authState.subscribe((user) => {
-            if (user) {
-              this.store.dispatch(userLogged({user : {
-                displayName: user.displayName,
-                email: user.email,
-                photoURL: user.photoURL,
-                uid: user.uid,
-                isLogged: true,
-                moviesLiked: []
-              }}))
-              this.store.select(userLogSelector).pipe(
-                ).subscribe(user => {
-                  console.log('data', user);
-                })
-            } else {
-                console.log("no user")
-            }
-          });
     }
 }

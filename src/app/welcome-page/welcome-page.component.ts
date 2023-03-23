@@ -8,6 +8,8 @@ import { tap } from "rxjs";
 import { MoviesService } from "../movies/movies.service";
 import { RegisterFormService } from "./register.service";
 import { LoginFormService } from "../welcome-page/login.service";
+import { Store } from "@ngrx/store";
+import { userLogged } from "../state/user.action";
 
 @Component({
     standalone: true,
@@ -28,7 +30,7 @@ export class WelcomePageComponent implements OnInit{
   getStartedIsClicked: boolean;
   registerIsClicked: boolean;
 
-  constructor (private readonly moviesService: MoviesService, private readonly db: FormBuilder, public loginAuthentication: LoginFormService, public authent: AngularFireAuth, private router: Router, public registerService: RegisterFormService) {
+  constructor (private readonly moviesService: MoviesService, private readonly db: FormBuilder, public loginAuthentication: LoginFormService, public authent: AngularFireAuth, private router: Router, public registerService: RegisterFormService, private store: Store) {
     this.randomImage = '';
     this.randomName = '';
     this.getStartedIsClicked = false;
@@ -65,13 +67,27 @@ export class WelcomePageComponent implements OnInit{
 
   SignIn() {
     this.loginAuthentication.SignIn(this.loginEmail, this.loginPassword);
-
     this.loginEmail = ''
     this.loginPassword= ''
   }
 
   login() {
-    this.authent.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(() => this.router.navigateByUrl('movies'));
+    this.authent.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(() => {
+      this.authent.authState.subscribe((user) => {
+      if (user) {
+        this.store.dispatch(userLogged({user : {
+          displayName: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+          uid: user.uid,
+          isLogged: true,
+        }}))
+      } else {
+        console.log("no user logged")
+      }
+    })
+      this.router.navigateByUrl('movies')
+    });
   }
 
   SignInWithGithub() {

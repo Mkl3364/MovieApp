@@ -10,14 +10,12 @@ export const userLogSelector = createSelector(
     (userState: UserState) => userState.user
 )
 
-
-
 export const countLikedMovies = createSelector(
     userState,
-    (movieState: UserState) => movieState.user.moviesLiked.length
+    (movieState: UserState) => movieState.moviesLiked.length
 );
 
 export const likedMoviesSelector = createSelector(
     userState,
-    (movieState: UserState) => movieState.user.moviesLiked
+    (movieState: UserState) => movieState.moviesLiked
 )
