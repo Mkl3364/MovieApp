@@ -3,7 +3,8 @@ $white: #fefefe;
 $grey: #7B9399;
 $purple: #D702FB;
 $blue: #1A54FF;
-
+$input-bg: #1C1A2E;
+$purple-gradient: linear-gradient(220deg, $purple, $blue);
 
 @mixin btn {
     background-image: linear-gradient(220deg, $purple, $blue);

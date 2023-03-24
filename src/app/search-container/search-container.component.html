@@ -1,0 +1,4 @@
+<form (submit)="submit()" [formGroup]="searchForm" class="search-input-container">
+    <input formControlName="query" class="search-input" type="text" placeholder="What are you watching today">
+    <img (click)="submit()" src="../../assets/img/search-icon.svg" alt="Search Icon">
+</form>
