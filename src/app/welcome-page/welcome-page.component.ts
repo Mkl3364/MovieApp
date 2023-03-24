@@ -70,8 +70,6 @@ export class WelcomePageComponent implements OnInit {
 
     if(this.loginForm.value.loginEmail && this.loginForm.value.loginPassword) {
       this.AuthService.SignIn(this.loginForm.value.loginEmail, this.loginForm.value.loginPassword).then(() => this.router.navigateByUrl('movies'));
-      this.loginEmail = ''
-      this.loginPassword = ''
     }
 
   }
