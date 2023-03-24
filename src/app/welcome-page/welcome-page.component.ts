@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, SimpleChanges } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { Router, RouterLink, RouterOutlet } from "@angular/router";
@@ -17,11 +17,6 @@ import { apiService } from "src/api.service";
   imports: [ReactiveFormsModule, CommonModule, RouterLink, RouterOutlet]
 })
 export class WelcomePageComponent implements OnInit {
-
-  loginEmail: string;
-  loginPassword: string;
-  registerEmail: string;
-  registerPassword: string;
   resetPassword: boolean;
   getAllDatas$ = this.apiService.getMovies();
   randomImage: string;
@@ -39,12 +34,6 @@ export class WelcomePageComponent implements OnInit {
     this.resetPassword = false;
     this.emailSent = false;
     this.emailForgotPassword = this.forgotPwdForm.value.emailForgotPassword ?? ""
-
-    this.loginEmail = this.loginForm.value.loginEmail ?? '';
-    this.loginPassword = this.loginForm.value.loginPassword ?? '';
-
-    this.registerEmail = this.registerForm.value.registerEmail ?? '';
-    this.registerPassword = this.registerForm.value.registerPassword ?? '';
   }
 
   forgotPwdForm = this.db.group({
@@ -52,12 +41,12 @@ export class WelcomePageComponent implements OnInit {
   })
 
   registerForm = this.db.group({
-    registerEmail: ['', Validators.required],
+    registerEmail: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
     registerPassword: ['', Validators.required]
   })
 
   loginForm = this.db.group({
-    loginEmail: ['', Validators.required],
+    loginEmail: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
     loginPassword: ['', Validators.required]
   })
 
@@ -74,10 +63,9 @@ export class WelcomePageComponent implements OnInit {
   }
 
   SignIn() {
-    this.AuthService.SignIn(this.loginEmail, this.loginPassword);
-
-    this.loginEmail = ''
-    this.loginPassword = ''
+    if(this.loginForm.value.loginEmail && this.loginForm.value.loginPassword) {
+      this.AuthService.SignIn(this.loginForm.value.loginEmail, this.loginForm.value.loginPassword).then(() => this.router.navigateByUrl('movies'));;
+    }
   }
 
   login() {
@@ -95,8 +83,8 @@ export class WelcomePageComponent implements OnInit {
   }
 
   onSubmitRegister() {
-    this.AuthService.SignUp(this.registerEmail, this.registerPassword);
-    this.registerEmail = '';
-    this.registerPassword = '';
+    if(this.registerForm.value.registerEmail && this.registerForm.value.registerPassword) {
+      this.AuthService.SignUp(this.registerForm.value.registerEmail, this.registerForm.value.registerPassword).then(() => this.router.navigateByUrl('movies'));;
+    }
   }
 }
