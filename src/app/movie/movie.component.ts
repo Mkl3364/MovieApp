@@ -9,13 +9,15 @@ import { UserState } from "../state/user.reducer";
 import { likedMoviesSelector, userLogSelector } from "../state/user.selector";
 import { Movie, MovieService, UserInterface } from "./movie.service";
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 
 @Component({
     standalone: true,
     selector: 'tp-movies-movie',
     templateUrl: 'movie.component.html',
     styleUrls: ['./movie.component.scss'],
-    imports: [CommonModule, RouterLink, RouterOutlet],
+    imports: [CommonModule, RouterLink, RouterOutlet, ShareButtonsModule, ShareIconsModule],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MovieComponent implements OnInit {
@@ -24,10 +26,12 @@ export class MovieComponent implements OnInit {
     public userUid$: any;
     public userMovies$: any
     public tutorials: Observable<any[]> | undefined;
+    public seen: boolean;
     public liked: boolean;
     movie$ = this.movieService.getMovieWithId(parseInt(this.route.snapshot.paramMap.get('id')!));
     castMovie$ = this.movieService.getMovieCredits(parseInt(this.route.snapshot.paramMap.get('id')!))
     constructor(private route: ActivatedRoute, public movieService: MovieService, private store: Store<UserState>, private firestore: AngularFirestore) {
+        this.seen = false
         this.addedMovies$ = this.store.select((state) => state.moviesLiked)
         this.store.select(likedMoviesSelector).pipe(
           ).subscribe(data => {
@@ -51,10 +55,9 @@ export class MovieComponent implements OnInit {
         }), switchMap((userUid) => {
             return of(userUid).pipe(withLatestFrom(this.store.select(likedMoviesSelector)))
         })).subscribe(([userUid, movies]: [UserInterface, Movie[]]) => {
-            this.firestore.doc(`movies/${userUid.uid}`).update({movies}) 
+            this.firestore.doc(`movies/${userUid.uid}`).set({movies}, {merge: true})
+            this.seen = true;
         })
         this.liked = true
     }
-
-
 }
