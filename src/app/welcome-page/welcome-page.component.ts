@@ -34,7 +34,9 @@ export class WelcomePageComponent implements OnInit {
   emailSent: boolean;
   emailForgotPassword: string;
 
-  constructor (private readonly moviesService: MoviesService, private readonly db: FormBuilder, public authent: AngularFireAuth, private router: Router, private store: Store, public AuthService: AuthService, public apiService: apiService ) {
+  constructor (private readonly moviesService: MoviesService, private readonly db: FormBuilder, public authent: AngularFireAuth, private router: Router, private store: Store, private AuthService: AuthService, private apiService: apiService) {
+
+  // constructor( private readonly db: FormBuilder, public AuthService: AuthService, public authent: AngularFireAuth, private router: Router, private readonly apiService: apiService) {
     this.randomImage = '';
     this.randomName = '';
     this.getStartedIsClicked = false;
@@ -77,9 +79,8 @@ export class WelcomePageComponent implements OnInit {
   }
 
   SignIn() {
-    //this.loginAuthentication.SignIn(this.loginEmail, this.loginPassword);
+    // this.loginAuthentication.SignIn(this.loginEmail, this.loginPassword);
     this.AuthService.SignIn(this.loginEmail, this.loginPassword);
-
     this.loginEmail = ''
     this.loginPassword = ''
   }
