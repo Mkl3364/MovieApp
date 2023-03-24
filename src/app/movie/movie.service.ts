@@ -1,6 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
+import { userLogSelector } from "../state/user.selector";
 
 
 export interface Movie {
@@ -33,7 +35,7 @@ export interface Genre {
 })
 
 export class MovieService {
-    constructor(private httpClient: HttpClient) {
+    constructor(private httpClient: HttpClient, public store: Store) {
 
     }
 
@@ -43,5 +45,9 @@ export class MovieService {
 
     public getMovieCredits(id: number | null): Observable<any> {
         return this.httpClient.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=81a8a2c4c129dd1c603073a9d974becb&language=en-US`)
+    }
+
+    public getUserUid(): Observable<UserInterface> {
+        return this.store.select(userLogSelector)
     }
 }

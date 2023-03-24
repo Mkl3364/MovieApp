@@ -1,7 +1,7 @@
 <div class="carousel-wrapper"
     [ngStyle]="{'background-image': 'url(https://image.tmdb.org/t/p/w500/' + backdrop_path + ')'}">
     <div class="info-play-container">
-        <div class="info-container">
+        <div class="info-container" routerLink="{{id}}">
             <p class="title">{{title}}</p>
             <div class="rate-hour-theme-container">
                 <div class="rate-container">

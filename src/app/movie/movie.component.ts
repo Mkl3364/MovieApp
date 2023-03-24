@@ -22,7 +22,6 @@ import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 })
 export class MovieComponent implements OnInit {
     public addedMovies$
-    public userIsLogged$
     public userUid$: any;
     public userMovies$: any
     public tutorials: Observable<any[]> | undefined;
@@ -30,6 +29,7 @@ export class MovieComponent implements OnInit {
     public liked: boolean;
     movie$ = this.movieService.getMovieWithId(parseInt(this.route.snapshot.paramMap.get('id')!));
     castMovie$ = this.movieService.getMovieCredits(parseInt(this.route.snapshot.paramMap.get('id')!))
+    userIsLogged$ = this.movieService.getUserUid()
     constructor(private route: ActivatedRoute, public movieService: MovieService, private store: Store<UserState>, private firestore: AngularFirestore) {
         this.seen = false
         this.addedMovies$ = this.store.select((state) => state.moviesLiked)
@@ -38,7 +38,7 @@ export class MovieComponent implements OnInit {
             console.log('movies liked', data);
           })
         this.liked = false
-        this.userIsLogged$ = this.store.select(userLogSelector).pipe().subscribe(data => console.log('user', data.isLogged))
+        // this.userIsLogged$ = this.store.select(userLogSelector).pipe().subscribe(data => console.log('user', data.isLogged))
     }
     ngOnInit(): void {
         console.log("fdfgfd")

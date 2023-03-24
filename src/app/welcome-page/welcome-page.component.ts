@@ -11,7 +11,6 @@ import { userLogged } from "../state/user.action";
 import { AuthService } from "../welcome-page/auth.service";
 import { apiService } from "src/api.service";
 
-
 @Component({
   standalone: true,
   selector: 'tp-movies-welcome-page',
@@ -36,7 +35,6 @@ export class WelcomePageComponent implements OnInit {
 
   constructor (private readonly moviesService: MoviesService, private readonly db: FormBuilder, public authent: AngularFireAuth, private router: Router, private store: Store, private AuthService: AuthService, private apiService: apiService) {
 
-  // constructor( private readonly db: FormBuilder, public AuthService: AuthService, public authent: AngularFireAuth, private router: Router, private readonly apiService: apiService) {
     this.randomImage = '';
     this.randomName = '';
     this.getStartedIsClicked = false;
@@ -69,7 +67,7 @@ export class WelcomePageComponent implements OnInit {
   ngOnInit() {
     this.authent.signOut();
     this.getAllDatas$.pipe(
-      tap((allDatas: any) => {
+      tap((allDatas) => {
         const randomNumber = Math.floor(Math.random() * allDatas.results.length);
         this.randomImage = allDatas.results[randomNumber].poster_path;
         this.randomName = allDatas.results[randomNumber].original_title;

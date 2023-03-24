@@ -7,6 +7,7 @@ import { apiService } from "src/api.service";
 import { MovieContainerComponent } from '../movie-container/movie-container.component';
 
 interface dataMovies {
+	id: number;
 	title: string,
 	backdrop_path: string,
 	vote_average: number,
@@ -44,7 +45,8 @@ export class MovieCarouselComponent implements OnInit {
 							title: movie.title,
 							backdrop_path: movie.backdrop_path,
 							vote_average: movie.vote_average,
-							genresId: movie.genre_ids
+							genresId: movie.genre_ids,
+							id: movie.id
 						}
 						this.dataMovies.push(dataMovie);
 					}

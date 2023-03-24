@@ -30,9 +30,9 @@
                 </li>
             </ul>
         </div>
-        <div class="like-container" *ngIf="userIsLogged$; else elseBlock">
+        <div class="like-container" *ngIf="userIsLogged$ | async as user; else elseBlock">
             <span class="vu" *ngIf="!seen; else seenBlock">Déjà vu ?</span>
-            <ng-template #seenBlock class="vu">Vu</ng-template>
+            <ng-template #seenBlock class="vu">{{user}}</ng-template>
             <img src="../../assets/img/check-circle.svg" *ngIf="!seen; else iconSeenBlock" loading="lazy" class="like-movie" (click)="addMovieToLikes(movie)"/>
             <ng-template #iconSeenBlock class="like-movie"><img src="../../assets/img/check-circle-green.svg" loading="lazy" class="like-movie"/></ng-template>
         </div>
