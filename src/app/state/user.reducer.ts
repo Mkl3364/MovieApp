@@ -8,7 +8,6 @@ export const featureKey = 'movie';
 
 export interface UserState {
     user: UserInterface
-    // isLogged : boolean
     moviesLiked: Movie[]
 }
 
