@@ -6,7 +6,7 @@
     <span class="header-notification">
         <img (click)="notifications()" src="../../assets/img/notifications.svg" alt="Notification Icon" />
         <div class="container-notification" *ngIf="notificationIsOpen">
-            chibre
+            <p class="activites-flux"> Flux d'activité </p>
             <ul>
                 <li *ngFor="let item of items | async">
                   {{ item }}
