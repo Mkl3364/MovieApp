@@ -28,7 +28,7 @@ export const appRoutes: Route[] = [
         canActivate: [AngularFireAuthGuard]
     },
     {
-        path: 'movie/:id',
+        path: 'movies/:id',
         component: MovieComponent,
         canActivate: [AngularFireAuthGuard]
     },

@@ -5,9 +5,11 @@ import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { Router, RouterLink, RouterOutlet } from "@angular/router";
 import firebase from 'firebase/compat/app';
 import { tap } from "rxjs";
+import { MoviesService } from "../movies/movies.service";
+import { Store } from "@ngrx/store";
+import { userLogged } from "../state/user.action";
 import { AuthService } from "../welcome-page/auth.service";
 import { apiService } from "src/api.service";
-
 
 @Component({
   standalone: true,
@@ -27,7 +29,8 @@ export class WelcomePageComponent implements OnInit {
   emailForgotPassword: string;
   regexEmailConfirmation = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
 
-  constructor( private readonly db: FormBuilder, public AuthService: AuthService, public authent: AngularFireAuth, private router: Router, private readonly apiService: apiService) {
+  constructor (private readonly moviesService: MoviesService, private readonly db: FormBuilder, public authent: AngularFireAuth, private router: Router, private store: Store, private AuthService: AuthService, private apiService: apiService) {
+
     this.randomImage = '';
     this.randomName = '';
     this.getStartedIsClicked = false;
@@ -54,7 +57,7 @@ export class WelcomePageComponent implements OnInit {
   ngOnInit() {
     this.authent.signOut();
     this.getAllDatas$.pipe(
-      tap(allDatas => {
+      tap((allDatas) => {
         const randomNumber = Math.floor(Math.random() * allDatas.results.length);
         this.randomImage = allDatas.results[randomNumber].poster_path;
         this.randomName = allDatas.results[randomNumber].original_title;
@@ -64,13 +67,28 @@ export class WelcomePageComponent implements OnInit {
   }
 
   SignIn() {
+
     if(this.loginForm.value.loginEmail && this.loginForm.value.loginPassword) {
-      this.AuthService.SignIn(this.loginForm.value.loginEmail, this.loginForm.value.loginPassword).then(() => this.router.navigateByUrl('movies'));;
+      this.AuthService.SignIn(this.loginForm.value.loginEmail, this.loginForm.value.loginPassword).then(() => this.router.navigateByUrl('movies'));
     }
+
   }
 
   login() {
-    this.authent.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(() => this.router.navigateByUrl('movies'));
+    this.authent.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(() => {
+      this.authent.authState.subscribe((user) => {
+      if (user) {
+        this.store.dispatch(userLogged({user : {
+          displayName: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+          uid: user.uid,
+          isLogged: true,
+        }}))
+      }
+    })
+      this.router.navigateByUrl('movies')
+    });
   }
 
   SignInWithGithub() {

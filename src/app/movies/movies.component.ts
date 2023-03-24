@@ -56,7 +56,9 @@ export class MoviesComponent implements OnInit {
                     user: {
                         displayName: user.displayName,
                         email: user.email,
-                        photoURL: user.photoURL
+                        photoURL: user.photoURL,
+                        uid: user.uid,
+                        isLogged: true
                     }
                 }))
                 this.store.select(userLogSelector).pipe(

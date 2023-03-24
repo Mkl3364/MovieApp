@@ -1,9 +1,12 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Store } from "@ngrx/store";
+import { Observable, tap } from "rxjs";
+import { userLogSelector } from "../state/user.selector";
 
 
 export interface Movie {
+    userUid: string;
     adult: boolean
     genres : Genre[]
     original_title: string
@@ -18,8 +21,8 @@ export interface UserInterface {
     displayName: string | null
     email: string | null
     photoURL: string | null
-    // isLogged : boolean
-    // moviesLiked: Movie[]
+    uid: string
+    isLogged : boolean
 }
 
 export interface Genre {
@@ -32,7 +35,7 @@ export interface Genre {
 })
 
 export class MovieService {
-    constructor(private httpClient: HttpClient) {
+    constructor(private httpClient: HttpClient, public store: Store) {
 
     }
 
