@@ -25,6 +25,7 @@ export class WelcomePageComponent implements OnInit {
   registerIsClicked: boolean;
   emailSent: boolean;
   emailForgotPassword: string;
+  regexEmailConfirmation = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
 
   constructor( private readonly db: FormBuilder, public AuthService: AuthService, public authent: AngularFireAuth, private router: Router, private readonly apiService: apiService) {
     this.randomImage = '';
@@ -33,7 +34,7 @@ export class WelcomePageComponent implements OnInit {
     this.registerIsClicked = false;
     this.resetPassword = false;
     this.emailSent = false;
-    this.emailForgotPassword = this.forgotPwdForm.value.emailForgotPassword ?? ""
+    this.emailForgotPassword = this.forgotPwdForm.value.emailForgotPassword ?? "";
   }
 
   forgotPwdForm = this.db.group({
@@ -41,12 +42,12 @@ export class WelcomePageComponent implements OnInit {
   })
 
   registerForm = this.db.group({
-    registerEmail: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+    registerEmail: ['', [Validators.required, Validators.pattern(this.regexEmailConfirmation)]],
     registerPassword: ['', Validators.required]
   })
 
   loginForm = this.db.group({
-    loginEmail: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+    loginEmail: ['', [Validators.required, Validators.pattern(this.regexEmailConfirmation)]],
     loginPassword: ['', Validators.required]
   })
 
