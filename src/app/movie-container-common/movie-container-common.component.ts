@@ -33,5 +33,17 @@ export class MovieContainerCommonComponent implements OnInit {
 		} else {
 			this.backgroundImage = `https://image.tmdb.org/t/p/w500${this.backdrop_path}`;
 		}
+
+
+
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('show')
+				}
+			})
+		})
+		const hiddenElements = document.querySelectorAll('.movie-container')
+		hiddenElements.forEach((el) => observer.observe(el))
 	}
 }
