@@ -2,8 +2,6 @@ import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { featureUserKey, UserState } from "./user.reducer";
 
 export const userState = createFeatureSelector<UserState>(featureUserKey);
-// export const movieState = createFeatureSelector<MovieState>(featureKey);
-
 
 export const userLogSelector = createSelector(
     userState,

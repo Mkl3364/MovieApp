@@ -30,13 +30,12 @@
                 </li>
             </ul>
         </div>
-        <div class="like-container" *ngIf="userIsLogged$ | async as user; else elseBlock">
+        <div class="like-container">
             <span class="vu" *ngIf="!seen; else seenBlock">Déjà vu ?</span>
-            <ng-template #seenBlock class="vu">{{user}}</ng-template>
+            <ng-template #seenBlock class="vu">Vu</ng-template>
             <img src="../../assets/img/check-circle.svg" *ngIf="!seen; else iconSeenBlock" loading="lazy" class="like-movie" (click)="addMovieToLikes(movie)"/>
             <ng-template #iconSeenBlock class="like-movie"><img src="../../assets/img/check-circle-green.svg" loading="lazy" class="like-movie"/></ng-template>
         </div>
-        <ng-template #elseBlock><img src="../../assets/img/like-heart.svg" loading="lazy" class="like-movie" (click)="addMovieToLikes(movie)"/></ng-template>
         <share-buttons theme="modern-dark"
             [include]="['copy', 'facebook', 'email', 'messenger', 'mix', 'line', 'linkedin', 'pinterest', 'print', 'reddit', 'sms', 'telegram', 'tumblr', 'twitter', 'viber', 'vk', 'xing', 'whatsapp']"
             [showIcon]="true"

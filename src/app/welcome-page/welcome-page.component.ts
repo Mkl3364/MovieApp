@@ -77,7 +77,6 @@ export class WelcomePageComponent implements OnInit {
   }
 
   SignIn() {
-    // this.loginAuthentication.SignIn(this.loginEmail, this.loginPassword);
     this.AuthService.SignIn(this.loginEmail, this.loginPassword);
     this.loginEmail = ''
     this.loginPassword = ''
@@ -94,8 +93,6 @@ export class WelcomePageComponent implements OnInit {
           uid: user.uid,
           isLogged: true,
         }}))
-      } else {
-        console.log("no user logged")
       }
     })
       this.router.navigateByUrl('movies')
