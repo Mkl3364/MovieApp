@@ -5,7 +5,6 @@ import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { Router, RouterLink, RouterOutlet } from "@angular/router";
 import firebase from 'firebase/compat/app';
 import { tap } from "rxjs";
-import { MoviesService } from "../movies/movies.service";
 import { Store } from "@ngrx/store";
 import { userLogged } from "../state/user.action";
 import { AuthService } from "../welcome-page/auth.service";
@@ -29,7 +28,7 @@ export class WelcomePageComponent implements OnInit {
   emailForgotPassword: string;
   regexEmailConfirmation = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
 
-  constructor (private readonly moviesService: MoviesService, private readonly db: FormBuilder, public authent: AngularFireAuth, private router: Router, private store: Store, private AuthService: AuthService, private apiService: apiService) {
+  constructor (private readonly db: FormBuilder, public authent: AngularFireAuth, private router: Router, private store: Store, private AuthService: AuthService, private apiService: apiService) {
 
     this.randomImage = '';
     this.randomName = '';

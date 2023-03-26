@@ -2,7 +2,7 @@
 
 .container {
     background-color: $black;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .profile-fist-content {
@@ -11,12 +11,18 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
+
+    .d-none {
+        display: none;
+    }
 }
 
 .profile-first-content-img {
+    cursor: pointer;
+    margin-bottom: 0.5rem;
     border-radius: 50%;
-    height: 50px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
 }
 
 .option-items-img {
@@ -113,6 +119,7 @@ hr {
 }
 
 .go-back {
+    cursor: pointer;
     background-color: $grey;
     position: absolute;
     left: 6.93%;
@@ -125,3 +132,15 @@ hr {
     border-radius: 12px;
 }
 
+.deconnection {
+
+    p {
+        padding: 1rem;
+        color: white;
+        width: fit-content;
+        border-radius: 0.5rem;
+        margin-left: auto;
+        margin-right: auto;
+        border: 2px solid $purple;
+    }
+}

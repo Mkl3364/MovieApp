@@ -4,13 +4,11 @@ import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { PaginationComponent } from "../pagination/pagination.component";
 import { MovieCarouselComponent } from "../movie-carousel/movie-carousel.component";
-import { MoviesService } from "./movies.service";
 import { Router, RouterLink } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { userLogged } from "../state/user.action";
 import { userLogSelector } from "../state/user.selector";
-//import { UserImageComponent } from '../user-image/user-image.component';
 import { MovieContainerCommonComponent } from "../movie-container-common/movie-container-common.component";
 import { apiService } from "src/api.service";
 import { tap } from "rxjs";
@@ -33,7 +31,6 @@ export class MoviesComponent implements OnInit {
 
     movies$ = this.apiService.getMovies();
     genre$ = this.apiService.getGenres();
-    // movies$ = this.moviesService.getMoviesPopular();
     public userData: any;
     recentMovies: object[] | any;
     genres: genre[];
@@ -42,7 +39,7 @@ export class MoviesComponent implements OnInit {
     totalPages: number;
     query: string;
 
-    constructor(private readonly db: FormBuilder, private readonly moviesService: MoviesService, private readonly apiService: apiService, private router: Router, private auth: AngularFireAuth, private store: Store) {
+    constructor(private readonly db: FormBuilder, private readonly apiService: apiService, private router: Router, private auth: AngularFireAuth, private store: Store) {
 
         this.genres = [];
         this.genreId = 0;

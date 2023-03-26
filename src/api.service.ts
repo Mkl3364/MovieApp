@@ -1,12 +1,13 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { Observable } from "rxjs";
+import { AngularFireStorage } from "@angular/fire/compat/storage";
 
 @Injectable({
     providedIn: 'root',
 })
 export class apiService {
-    constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient, private AngularFireStorage: AngularFireStorage) { }
 
     public getMovies(page: number = 1): Observable<any> {
         return this.httpClient.get(`https://api.themoviedb.org/3/movie/popular?api_key=81a8a2c4c129dd1c603073a9d974becb&language=en-US&page=${page}`)
