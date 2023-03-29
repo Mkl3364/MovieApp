@@ -7,6 +7,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { MovieComponent } from './movie/movie.component';
 import { SearchComponent } from './search/search.component';
 import { AccountComponent } from './account/account.component';
+import { ChangeEmailComponent } from './changeEmail/changeEmail.component';
 
 
 export const appRoutes: Route[] = [
@@ -41,6 +42,11 @@ export const appRoutes: Route[] = [
     {
         path: 'account',
         component: AccountComponent,
+        canActivate: [AngularFireAuthGuard]
+    },
+    {
+        path: 'changeEmail',
+        component: ChangeEmailComponent,
         canActivate: [AngularFireAuthGuard]
     }
 ]
