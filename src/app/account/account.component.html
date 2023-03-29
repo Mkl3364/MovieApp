@@ -1,2 +1,16 @@
-<h3>Change your email address</h3>
-<input type="email" formControlName="email" required>
+<div class="container" *ngIf="user$ | async as user">
+    <div routerLink="/profile" class="go-back">
+        <img src="../../assets/img/arrow-left.svg" />
+    </div>
+    <h3 class="title">Informations personnelles</h3>
+    <div class="option-container">
+        <div class="option-items">
+            <p class="content">Email Adress</p>
+            <input type="email" value="{{user.email}}" formControlName="email" required (click)="onClickUserInput()" />
+        </div>
+        <div class="option-items">
+            <p class="content">Password</p>
+            <input type="email" value="{{user.uid}}" formControlName="password" required />
+        </div>
+    </div>
+</div>
