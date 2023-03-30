@@ -4,7 +4,13 @@
 <h3 class="title">Change your email adress</h3>
 <div class="option-container">
     <div class="option-items">
-        <p class="content">Email Adress</p>
-        <input type="email" formControlName="email" required (onChange)="changeEmailAdress()" />
+        <p class="title">Email Adress</p>
+        <form [formGroup]="emailForm">
+            <input type="email" formControlName="email" required />
+        </form>
+        <div class="button-container">
+            <button type="button" (click)="changeEmailAdress()" class="submit">Submit</button>
+        </div>
     </div>
+    <div *ngIf="changed" class="title">Email adress changed !</div>
 </div>

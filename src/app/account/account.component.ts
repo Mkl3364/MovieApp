@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
+import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { Router, RouterLink, RouterOutlet } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { Observable, tap } from "rxjs";
@@ -17,19 +18,23 @@ import { userLogSelector } from "../state/user.selector";
 export class AccountComponent {
     public user$: Observable<UserInterface> | undefined
     public userEmail: string | undefined
-    public userPasword: string | undefined
+    public userPassword: string | undefined
 
-    constructor(private store: Store, public router: Router) {
+    constructor(private store: Store, public router: Router, public auth: AngularFireAuth) {
         this.user$ = this.store.select(userLogSelector)
         this.user$.pipe(tap((account: UserInterface) => {
             this.userEmail = account.email ?? ""
         }))
         this.user$.pipe(tap((account: UserInterface) => {
-            this.userPasword = account.uid
+            this.userPassword = account.uid
         }))
     }
 
     onClickUserInput() {
         this.router.navigateByUrl('/changeEmail')
+    }
+
+    onClickPasswordInput() {
+        this.router.navigateByUrl('/changePassword')
     }
 }

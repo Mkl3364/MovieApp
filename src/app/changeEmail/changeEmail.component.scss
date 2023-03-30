@@ -28,13 +28,33 @@
 }
 
 input {
-    border: none;
     display: flex;
     height: 20px;
     width: 300px;
+    margin: 10px;
 }
 
 .content {
     color: $white;
     font-size: 15px;
+}
+
+.title {
+    text-align: center;
+    font-size: 18px;
+    padding: 20px;
+}
+
+.submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15px;
+    width: 150px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
