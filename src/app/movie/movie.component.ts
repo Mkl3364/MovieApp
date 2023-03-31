@@ -25,6 +25,7 @@ export class MovieComponent implements OnInit {
     public userUid$: Observable<UserInterface> | undefined
     public seen: boolean;
     public liked: boolean;
+    public openShare: boolean;
     movie$ = this.movieService.getMovieWithId(parseInt(this.route.snapshot.paramMap.get('id')!));
     castMovie$ = this.movieService.getMovieCredits(parseInt(this.route.snapshot.paramMap.get('id')!))
     constructor(private route: ActivatedRoute, public movieService: MovieService, private store: Store<UserState>, private firestore: AngularFirestore) {
@@ -33,6 +34,7 @@ export class MovieComponent implements OnInit {
         this.store.select(likedMoviesSelector).pipe(
           ).subscribe(data => data)
         this.liked = false
+        this.openShare = false
     }
     ngOnInit(): void {
         console.log("fdfgfd")
@@ -53,5 +55,10 @@ export class MovieComponent implements OnInit {
             this.seen = true;
         })
         this.liked = true
+    }
+
+    clickOnShareOpen() {
+        this.openShare = !this.openShare
+        console.log(this.openShare)
     }
 }
