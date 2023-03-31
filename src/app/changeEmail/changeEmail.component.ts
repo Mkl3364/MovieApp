@@ -20,11 +20,13 @@ export class ChangeEmailComponent implements OnInit {
     private userEmail: string;
     private userPassword: string;
     public changed: boolean
+    public errorChangingEmail: boolean;
     constructor(private readonly db: FormBuilder, private auth: AngularFireAuth, public store: Store) {
         this.email = this.emailForm.value.email ?? ""
         this.userEmail = "test@popina.com"
         this.userPassword = "azerty"
         this.changed = false
+        this.errorChangingEmail = false
     }
 
     emailForm = this.db.group({
@@ -54,7 +56,7 @@ export class ChangeEmailComponent implements OnInit {
                 this.changed = true
             }
         } catch (error) {
-            console.log(error)
+            this.errorChangingEmail = true
         }
     }
 }

@@ -17,9 +17,11 @@ export class ChangePasswordComponent {
     public user$: Observable<UserInterface> | undefined
     public changed: boolean
     private password: string
+    public errorChangingPassword: boolean
     constructor(private readonly db: FormBuilder, private auth: AngularFireAuth) {
         this.password = this.passwordForm.value.password ?? ""
         this.changed = false
+        this.errorChangingPassword = false
     }
 
     passwordForm = this.db.group({
@@ -36,7 +38,7 @@ export class ChangePasswordComponent {
                 this.changed = true
             }
         } catch (error) {
-            console.log(error)
+            this.errorChangingPassword = true;
         }
     }   
 }
