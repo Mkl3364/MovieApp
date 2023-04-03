@@ -12,6 +12,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { FormsModule } from "@angular/forms";
+import { AngularFireAuth } from "@angular/fire/compat/auth";
 
 @Component({
     standalone: true,
@@ -32,7 +33,7 @@ export class MovieComponent implements OnInit {
     public selectedStarValue: number;
     movie$ = this.movieService.getMovieWithId(parseInt(this.route.snapshot.paramMap.get('id')!));
     castMovie$ = this.movieService.getMovieCredits(parseInt(this.route.snapshot.paramMap.get('id')!))
-    constructor(private route: ActivatedRoute, public movieService: MovieService, private store: Store<UserState>, private firestore: AngularFirestore) {
+    constructor(private route: ActivatedRoute, public movieService: MovieService, private store: Store<UserState>, private firestore: AngularFirestore, public auth: AngularFireAuth) {
         this.seen = false
         this.addedMovies$ = this.store.select((state) => state.moviesLiked)
         this.store.select(likedMoviesSelector).pipe(
@@ -43,8 +44,11 @@ export class MovieComponent implements OnInit {
         this.selectedStarValue = 0;
         this.uid = ''
     }
-    ngOnInit(): void {
-        console.log("fdfgfd")
+    async ngOnInit() {
+        const user  = await this.auth.currentUser
+        const userRes = user
+        this.firestore.doc(`movies/${userRes?.uid}`).get().subscribe(x => x.data())
+        
     }
 
     addMovieToLikes(movie: Movie) {
