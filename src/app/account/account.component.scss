@@ -9,16 +9,18 @@
 .title {
     text-align: center;
     color: $white;
-    font-size: 18px;
-    padding: 20px;
+    font-size: 2rem;
+    padding: 3rem;
 }
 
 .go-back {
     background-color: $grey;
     position: absolute;
-    left: 6.93%;
+    left: 0;
     right: 85.07%;
-    top: 2.93%;
+    top: 0;
+    margin-top: 20px;
+    margin-left: 20px;
     bottom: 93.41%;
     display: flex;
     justify-content: center;
@@ -33,18 +35,31 @@
 
 .content {
     color: $white;
-    font-size: 15px;
+    font-size: 1.5rem;
 }
 
 input {
     border: none;
     display: flex;
-    height: 20px;
-    width: 300px;
+    height: 20%;
+    width: 150%;
 }
 
 .option-items {
     display: flex;
     flex-direction: column;
-    margin: 10px;
+    // margin: 10px;
+}
+
+.email-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 150%;
+}
+
+li {
+    list-style-type: none;
+    color: $white;
+    font-size: 1.5rem;
 }

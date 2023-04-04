@@ -70,7 +70,6 @@ export class MovieComponent implements OnInit {
 
     clickOnShareOpen() {
         this.openShare = !this.openShare
-        console.log(this.openShare)
     }
 
     countStar(star: number, movie: Movie) {

@@ -6,11 +6,27 @@
     <div class="option-container">
         <div class="option-items">
             <p class="content">Email Adress</p>
-            <input type="email" value="{{user.email}}" formControlName="email" required (click)="onClickUserInput()" />
+            <div class="email-content" (click)="onClickUserInput()">
+                <div>
+                    <ul>
+                        <li>{{user.email}}</li>
+                    </ul>
+                </div>
+                <div>
+                    <img src="../../assets/img/arrow right.svg" alt="right arrow icon" />
+                </div>
+            </div>
         </div>
         <div class="option-items">
             <p class="content">Password</p>
-            <input type="email" value="**********" formControlName="password" required (click)="onClickPasswordInput()"/>
+            <div class="email-content" (click)="onClickPasswordInput()">
+                <ul>
+                    <li>*********</li>
+                </ul>
+            </div>
+            <div>
+                <img src="../../assets/img/arrow right.svg" alt="right arrow icon" />
+            </div>
         </div>
     </div>
 </div>
