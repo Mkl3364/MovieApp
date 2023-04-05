@@ -1,12 +1,13 @@
 @import '../../variables';
 
 .go-back {
-    cursor: pointer;
     background-color: $grey;
     position: absolute;
-    left: 6.93%;
+    left: 0;
     right: 85.07%;
-    top: 2.93%;
+    top: 0;
+    margin-top: 20px;
+    margin-left: 20px;
     bottom: 93.41%;
     display: flex;
     justify-content: center;
@@ -24,33 +25,33 @@
 .option-items {
     display: flex;
     flex-direction: column;
-    margin: 10px;
+    width: 70%;
+    // margin: 10%;
 }
 
-input {
-    display: flex;
-    height: 20px;
-    width: 300px;
-    margin: 10px;
-}
+// input {
+//     display: flex;
+//     height: 20%;
+//     width: 150%;
+//     margin: 10%;
+// }
 
 .content {
     color: $white;
-    font-size: 15px;
+    font-size: 1.5rem;
 }
 
 .title {
     text-align: center;
-    font-size: 18px;
-    padding: 20px;
+    font-size: 2rem;
+    padding: 3rem;
 }
 
 .submit {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 15px;
-    width: 150px;
+    height: 15%;
+    width: 150%;
 }
 
 .button-container {

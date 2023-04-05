@@ -6,7 +6,7 @@
     <div class="option-items">
         <p class="title">Email Adress</p>
         <form [formGroup]="emailForm">
-            <input type="email" formControlName="email" required />
+            <input type="email" value="{{userEmail}}" formControlName="email" required />
         </form>
         <div class="button-container">
             <button type="button" (click)="changeEmailAdress()" class="submit">Submit</button>

@@ -17,14 +17,12 @@ import { UserInterface } from "../movie/movie.service";
 export class ChangeEmailComponent implements OnInit {
     public user$: Observable<UserInterface> | undefined
     private email: string;
-    private userEmail: string;
-    private userPassword: string;
+    public userEmail: string;
     public changed: boolean
     public errorChangingEmail: boolean;
     constructor(private readonly db: FormBuilder, private auth: AngularFireAuth, public store: Store) {
         this.email = this.emailForm.value.email ?? ""
         this.userEmail = "test@popina.com"
-        this.userPassword = "azerty"
         this.changed = false
         this.errorChangingEmail = false
     }
@@ -38,9 +36,6 @@ export class ChangeEmailComponent implements OnInit {
             if (user) {
                 if(user.email) {
                     this.userEmail = user.email;
-                }
-                if(user.uid) {
-                    this.userPassword = user.uid
                 }
             }
         });
