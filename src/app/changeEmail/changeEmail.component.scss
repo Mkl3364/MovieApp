@@ -26,15 +26,12 @@
     display: flex;
     flex-direction: column;
     width: 70%;
-    // margin: 10%;
+    margin: 10%;
 }
 
-// input {
-//     display: flex;
-//     height: 20%;
-//     width: 150%;
-//     margin: 10%;
-// }
+input {
+    width: 100%;
+}
 
 .content {
     color: $white;
@@ -52,6 +49,7 @@
     justify-content: center;
     height: 15%;
     width: 150%;
+    margin-top: 10%;
 }
 
 .button-container {
