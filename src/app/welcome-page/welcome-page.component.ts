@@ -9,6 +9,7 @@ import { Store } from "@ngrx/store";
 import { userLogged } from "../state/user.action";
 import { AuthService } from "../welcome-page/auth.service";
 import { apiService } from "src/api.service";
+import { AngularFirestore } from "@angular/fire/compat/firestore";
 
 @Component({
   standalone: true,
@@ -28,7 +29,7 @@ export class WelcomePageComponent implements OnInit {
   emailForgotPassword: string;
   regexEmailConfirmation = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
 
-  constructor (private readonly db: FormBuilder, public authent: AngularFireAuth, private router: Router, private store: Store, private AuthService: AuthService, private apiService: apiService) {
+  constructor (private readonly db: FormBuilder, public authent: AngularFireAuth, private router: Router, private store: Store, private AuthService: AuthService, private apiService: apiService, private firestore: AngularFirestore) {
 
     this.randomImage = '';
     this.randomName = '';
@@ -84,6 +85,20 @@ export class WelcomePageComponent implements OnInit {
           uid: user.uid,
           isLogged: true,
         }}))
+        this.firestore.collection('user', ref => ref.where('email', '==', `${user.email}`)).snapshotChanges().subscribe(res => {
+          if (res.length > 0) {
+            console.log('Match found')
+          } else {
+            const finalUser = {
+              displayName: user?.displayName ?? "User",
+              email: user?.email,
+              photoURL: user?.photoURL,
+              uid: user?.uid,
+              isLogged: true
+            }
+            this.firestore.doc(`user/${user?.uid}`).set({finalUser},  {merge: true})
+          }
+        })
       }
     })
       this.router.navigateByUrl('movies')
@@ -100,9 +115,20 @@ export class WelcomePageComponent implements OnInit {
     this.emailSent = true;
   }
 
-  onSubmitRegister() {
+  async onSubmitRegister() {
     if(this.registerForm.value.registerEmail && this.registerForm.value.registerPassword) {
-      this.AuthService.SignUp(this.registerForm.value.registerEmail, this.registerForm.value.registerPassword).then(() => this.router.navigateByUrl('movies'));;
+      await this.AuthService.SignUp(this.registerForm.value.registerEmail, this.registerForm.value.registerPassword);
+      this.authent.authState.subscribe((user) => {
+        const finalUser = {
+          displayName: user?.displayName ?? "User",
+          email: user?.email,
+          photoURL: user?.photoURL,
+          uid: user?.uid,
+          isLogged: true
+        }
+        this.firestore.doc(`user/${user?.uid}`).set({finalUser},  {merge: true})
+      })
+      this.router.navigateByUrl('movies')
     }
   }
 }

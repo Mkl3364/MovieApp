@@ -58,11 +58,12 @@
     padding: 20px;
 
     position: relative;
-    background-color: $grey;
+    background-color: $black;
+    border: 1px solid $white;
+    color: $white;
     padding: 1rem;
     border-radius: 10px;
     display: flex;
-    // align-items: center;
     justify-content: space-between;
     gap: 1rem;
     width: 80%;
@@ -110,4 +111,19 @@
     justify-content: center;
     align-items: center;
     border-radius: 12px;
+}
+
+.profile-first-content-img {
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    margin-right: 2rem;
+}
+
+.public-profile-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }

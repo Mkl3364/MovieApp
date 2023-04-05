@@ -47,13 +47,14 @@ export class AuthService {
         this.afAuth.signInWithPopup(new firebase.auth.GithubAuthProvider())
     }
 
-    async SignUp(email: string, password: string) {
+    async SignUp(email: string, password: string): Promise<firebase.auth.UserCredential> {
         try {
             const result = await this.afAuth
                 .createUserWithEmailAndPassword(email, password);
-            console.log(result);
+            return result
         } catch (error: any) {
             window.alert(error.message);
+            throw error.message
         }
       }
 }
