@@ -54,7 +54,7 @@
         justify-content: center;
         align-items: center;
         margin: 23px;
-        font-family: 'Inter';
+
         font-style: normal;
         font-weight: 600;
         font-size: 24px;
@@ -83,7 +83,7 @@
     .genre-list {
         display: flex;
         justify-content: center;
-        font-family: 'Inter';
+
         font-style: normal;
         font-weight: 400;
         font-size: 12px;
@@ -99,7 +99,7 @@
 
     .review {
         color: $white;
-        font-family: 'Inter';
+
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
@@ -111,7 +111,7 @@
 
     .review-content {
         color: $white;
-        font-family: 'Inter';
+
         font-style: normal;
         font-weight: 400;
         font-size: 15px;
@@ -141,8 +141,9 @@
     }
 
     .like-container {
+        margin-top: 2rem;
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
         align-items: center;
         color: white;
 
@@ -153,12 +154,12 @@
         }
 
         .like-movie {
-            height: 50px;
+            height: 30px;
         }
 
     }
 
-    .shareContent{
+    .shareContent {
         top: 100%;
         height: 0;
         opacity: 0;
@@ -181,19 +182,20 @@
     justify-content: flex-end;
     color: #ddd;
     padding: 10px 5px;
-  
+
 }
-  
+
 .star-container {
     display: flex;
     justify-content: flex-end;
 }
 
 .rating-list li:hover,
-.rating-list li:hover ~ li, .rating-list li.selected {
+.rating-list li:hover~li,
+.rating-list li.selected {
     color: #ffd700;
 }
-  
+
 .rating-list {
     display: inline-block;
     list-style: none;

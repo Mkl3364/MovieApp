@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { ChangeDetectorRef, Component } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { RouterLink } from "@angular/router";
 import { Observable } from "rxjs";
@@ -18,5 +18,9 @@ export class PublicComponent {
     constructor(private firestore: AngularFirestore, public auth: AngularFireAuth) {
         this.users$ = this.firestore.collection("user").valueChanges();
         this.usersMovies$ = this.firestore.collection('movies').valueChanges()
+
+
     }
+
+
 }

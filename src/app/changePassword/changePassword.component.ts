@@ -5,13 +5,14 @@ import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { RouterLink } from "@angular/router";
 import { Observable } from "rxjs";
 import { UserInterface } from "../movie/movie.service";
+import { FooterComponent } from "../footer/footer.component";
 
 @Component({
     standalone: true,
     selector: "tp-movies-change-password",
     templateUrl: 'changePassword.component.html',
     styleUrls: ['./changePassword.component.scss'],
-    imports: [CommonModule, ReactiveFormsModule, RouterLink]
+    imports: [CommonModule, ReactiveFormsModule, RouterLink, FooterComponent]
 })
 export class ChangePasswordComponent {
     public user$: Observable<UserInterface> | undefined
@@ -30,7 +31,7 @@ export class ChangePasswordComponent {
 
     async changePassword() {
         try {
-            const user  = await this.auth.currentUser
+            const user = await this.auth.currentUser
             const userRes = user;
             if (this.passwordForm.value.password) {
                 await userRes?.updatePassword(this.passwordForm.value.password)
@@ -39,5 +40,5 @@ export class ChangePasswordComponent {
         } catch (error) {
             this.errorChangingPassword = true;
         }
-    }   
+    }
 }

@@ -3,6 +3,7 @@
 .container {
     background-color: $black;
     min-height: 100vh;
+    padding-bottom: 10vh;
 }
 
 .title {
@@ -26,8 +27,9 @@
     width: 10px;
     height: 10px;
 }
+
 .user-name {
-    font-family: 'Inter';
+
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
@@ -36,7 +38,7 @@
 }
 
 .user-email {
-    font-family: 'Inter';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -72,7 +74,7 @@
 }
 
 .public-title {
-    font-family: 'Inter';
+
     font-style: normal;
     font-weight: 400;
     font-size: 17px;
@@ -81,7 +83,7 @@
 }
 
 .films-section {
-    font-family: 'Inter';
+
     font-style: normal;
     font-weight: 400;
     font-size: 15px;
