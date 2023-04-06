@@ -87,7 +87,7 @@ export class WelcomePageComponent implements OnInit {
         }}))
         this.firestore.collection('user', ref => ref.where('email', '==', `${user.email}`)).snapshotChanges().subscribe(res => {
           if (res.length > 0) {
-            console.log('Match found')
+            return;
           } else {
             const finalUser = {
               displayName: user?.displayName ?? "User",
