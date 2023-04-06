@@ -1,0 +1,62 @@
+@import '../../variables';
+
+.container {
+    background-color: $black;
+    min-height: 100vh;
+}
+
+.profile-fist-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.profile-first-content-img {
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+}
+
+.photo {
+    display: flex;
+    justify-content: center;
+}
+
+.user-name {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    color: $white;
+    display: flex;
+    justify-content: center;
+}
+
+.user-email {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: $grey;
+}
+
+.go-back {
+    cursor: pointer;
+    background-color: $grey;
+    position: absolute;
+    left: 6.93%;
+    right: 85.07%;
+    top: 2.93%;
+    bottom: 93.41%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+}
+

@@ -1,0 +1,6 @@
+<div class="test" *ngIf="moviesLiked$ | async as movies">
+    <div class="movies" *ngFor="let movie of movies.movies">
+        <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="movie-img" class="movie-img" />
+        <p class="movie-content">{{ movie.overview }}</p>
+    </div>
+</div>
