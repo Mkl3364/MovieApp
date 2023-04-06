@@ -9,6 +9,7 @@ import { TestDatabaseComponent } from './testDatabase/testDatabase.component';
 import { UserImageComponent } from './user-image/user-image.component';
 import { environment } from "../environments/environment";
 import { initializeApp } from "firebase/app";
+import { FooterComponent } from './footer/footer.component';
 initializeApp(environment.firebase);
 
 @Component({
