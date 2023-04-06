@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, Input, OnInit } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
-import { Observable } from "rxjs";
+import { Observable, tap } from "rxjs";
 import { FooterComponent } from "../footer/footer.component";
 
 @Component({
@@ -26,6 +26,13 @@ export class PublicProfileContainerComponent implements OnInit {
     @Input() photoURL: string;
 
     ngOnInit(): void {
-        this.userMovies$ = this.firestore.doc(`movies/${this.userUid}`).valueChanges()
+        this.userMovies$ = this.firestore.doc(`movies/${this.userUid}`).valueChanges();
+        this.userMovies$.pipe(
+            tap(
+                data => {
+                    data?.sort((a: { date: { getTime: () => number; }; }, b: { date: { getTime: () => number; }; }) => a.date.getTime() - b.date.getTime())
+                }
+            )
+        ).subscribe();
     }
 }

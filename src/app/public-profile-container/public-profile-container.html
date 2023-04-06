@@ -12,7 +12,6 @@
                 <div>
                     <div class="films-content">
                         <div *ngFor="let singleMovie of usersMovie.movies" class="liked-movies">
-
                             <img src="https://image.tmdb.org/t/p/w500{{singleMovie.poster_path}}" loading="lazy"
                                 class="movie-img" />
                             <h4 class="movie-title">{{singleMovie.original_title}}</h4>
@@ -25,7 +24,9 @@
                                     </ul>
                                 </div>
                             </div>
-
+                            <div style="color :red;">
+                                {{singleMovie.date}}
+                            </div>
                         </div>
                     </div>
                 </div>

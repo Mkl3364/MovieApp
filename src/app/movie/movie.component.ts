@@ -57,6 +57,14 @@ export class MovieComponent implements OnInit {
             this.store.dispatch(movieLiked({movie : {
                 ...movie,
                 userUid: t.uid,
+                date : new Date().toLocaleString('fr-FR', {
+                    day: '2-digit', 
+                    month: '2-digit', 
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                })
             }}))
             
         }), switchMap((userUid) => {
@@ -78,7 +86,15 @@ export class MovieComponent implements OnInit {
             this.store.dispatch(movieLiked({movie : {
                 ...movie,
                 userUid: t.uid,
-                user_vote: star
+                user_vote: star,
+                date : new Date().toLocaleString('fr-FR', {
+                    day: '2-digit', 
+                    month: '2-digit', 
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                })
             }}))
             
         }), switchMap((userUid) => {

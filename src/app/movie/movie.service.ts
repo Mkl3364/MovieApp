@@ -14,6 +14,7 @@ export interface Movie {
     release_date: string
     status: string
     vote_average: number
+    date: string
 }
 
 export interface UserInterface {
