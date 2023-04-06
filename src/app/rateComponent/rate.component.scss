@@ -13,9 +13,42 @@
 .movie-img {
     width: 40%;
     height: 40%;
+    margin-bottom: 2rem;
 }
 
 .movie-content {
     width: 40%;
     font-size: 1.2rem;
+}
+
+.rating-list li {
+    display: flex;
+    justify-content: flex-end;
+    color: #ddd;
+    padding: 5px 2px;
+
+}
+
+.star-container {
+    display: flex;
+    justify-content: center;
+}
+
+.rating-list li:hover,
+.rating-list li:hover~li,
+.rating-list li.selected {
+    color: #ffd700;
+}
+
+.fa-3x {
+    font-size: 1rem;
+}
+
+.rating-list {
+    display: inline-block;
+    list-style: none;
+}
+
+.star {
+    height: 18px;
 }
