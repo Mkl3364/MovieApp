@@ -2,16 +2,16 @@
     <div routerLink="/movies" class="go-back">
         <img src="../../assets/img/arrow-left.svg" />
     </div>
-<div class="profile-fist-content">
-    <img (click)="fileInput.click()" class="profile-first-content-img" [src]="photoURL$" alt="user-image" />
-    <input class="d-none" type="file" #fileInput (change)="changeImage($event)" accept="image/*">
-    <h2 class="user-name">{{ userName }}</h2>
-    <h3 class="user-email">{{ userEmail }}</h3>
-</div>
+    <div class="profile-fist-content">
+        <img (click)="fileInput.click()" class="profile-first-content-img" [src]="photoURL$" alt="user-image" />
+        <input class="d-none" type="file" #fileInput (change)="changeImage($event)" accept="image/*">
+        <h2 class="user-name">{{ userName }}</h2>
+        <h3 class="user-email">{{ userEmail }}</h3>
+    </div>
     <div class="option-container">
         <div class="option-items">
             <button type="button" class="option-items-button">
-                <a routerLink="">
+                <a>
                     <img src="../../assets/img/bookmarkk.svg" alt="bookmark" />
                     <p>Bookmark</p>
                 </a>
@@ -19,7 +19,7 @@
         </div>
         <div class="option-items">
             <button type="button" class="option-items-button">
-                <a routerLink="">
+                <a>
                     <img src="../../assets/img/history.svg" alt="history" />
                     <p>History</p>
                 </a>
@@ -65,7 +65,7 @@
 
     <div class="membership-container">
         <h2 class="membership-title">Account & Security</h2>
-        <button class="membership-wrapper">
+        <button class="membership-wrapper" routerLink="/account">
             <div class="membership-div">
                 <h3 class="membership-titleh3">Your account</h3>
                 <h4 class="membership-title4">Account settings, change number</h4>
@@ -83,3 +83,5 @@
     </div>
 
 </div>
+
+<tp-movies-footer></tp-movies-footer>

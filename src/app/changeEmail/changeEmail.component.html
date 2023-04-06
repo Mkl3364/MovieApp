@@ -1,0 +1,21 @@
+<div class="container">
+    <div routerLink="/profile" class="go-back">
+        <img src="../../assets/img/arrow-left.svg" />
+    </div>
+    <h3 class="title">Change your email adress</h3>
+    <div class="option-container">
+        <div class="option-items">
+            <p class="title">Email Adress</p>
+            <form [formGroup]="emailForm">
+                <input type="email" value="{{userEmail}}" formControlName="email" required />
+            </form>
+            <div class="button-container">
+                <button type="button" (click)="changeEmailAdress()" class="submit">Submit</button>
+            </div>
+        </div>
+        <div *ngIf="changed" class="title">Email adress changed !</div>
+        <div *ngIf="errorChangingEmail" class="title">Please log in again to change your email</div>
+    </div>
+</div>
+
+<tp-movies-footer></tp-movies-footer>

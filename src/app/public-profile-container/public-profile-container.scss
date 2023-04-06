@@ -17,58 +17,106 @@
     width: 80%;
     margin-inline: auto;
     margin-bottom: 2rem;
+
+    .public-wrapper {
+        display: flex;
+        flex-direction: column;
+
+        .public-profile-header {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+            .profile-first-content-img {
+                cursor: pointer;
+                margin-bottom: 0.5rem;
+                border-radius: 50%;
+                height: 60px;
+                width: 60px;
+                margin-right: 1rem;
+            }
+
+            .public-title {
+
+                font-style: normal;
+                font-weight: 400;
+                font-size: 17px;
+                font-weight: 600;
+                line-height: 17px;
+                color: $white;
+            }
+        }
+    }
+
+
+
+
+
+    .films-content {
+        display: flex;
+        justify-content: flex-start;
+        overflow-x: scroll;
+        margin-top: 2rem;
+        color: $white;
+        gap: 2rem;
+
+        .liked-movies {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .movie-img {
+                width: 100px;
+                height: 70%;
+            }
+
+            h4 {
+                font-size: 1rem;
+            }
+        }
+    }
+
+
+
+
+
+
+
+    .movie-title {
+        color: $white;
+        font-size: 1.3rem;
+    }
 }
 
-.public-wrapper {
+.rating-list li {
     display: flex;
-    flex-direction: column;
+    justify-content: flex-end;
+    color: #ddd;
+    padding: 5px 2px;
+
 }
 
-.public-profile-header {
+.star-container {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    justify-content: flex-end;
 }
 
-.public-title {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 17px;
-    font-weight: 600;
-    line-height: 17px;
-    color: $white;
+.rating-list li:hover,
+.rating-list li:hover~li,
+.rating-list li.selected {
+    color: #ffd700;
 }
 
-.films-content {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 2rem;
-    color: $white;
+.fa-3x {
+    font-size: 1rem;
 }
 
-.movie-img {
-    width: 70%;
-    height: 70%;
+.rating-list {
+    display: inline-block;
+    list-style: none;
 }
 
-.profile-first-content-img {
-    cursor: pointer;
-    margin-bottom: 0.5rem;
-    border-radius: 50%;
-    height: 60px;
-    width: 60px;
-    margin-right: 1rem;
-}
-
-.liked-movies {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.movie-title {
-    color: $white;
-    font-size: 1.3rem;
+.star {
+    height: 18px;
 }

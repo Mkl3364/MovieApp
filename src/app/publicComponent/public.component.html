@@ -4,5 +4,7 @@
     </div>
     <h1 class="title">News</h1>
     <h3 class="subtitle">Explorez ce que regarde vos amis</h3>
-    <tp-movies-public-profile-container *ngFor="let singleUser of user" [displayName]="singleUser.finalUser.displayName" [userUid]="singleUser.finalUser.uid" [photoURL]="singleUser.finalUser.photoURL"></tp-movies-public-profile-container>
+    <tp-movies-public-profile-container *ngFor="let singleUser of user" [displayName]="singleUser.finalUser.displayName"
+        [userUid]="singleUser.finalUser.uid"
+        [photoURL]="singleUser.finalUser.photoURL"></tp-movies-public-profile-container>
 </div>

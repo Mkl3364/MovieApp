@@ -41,7 +41,6 @@
 
 .singleFilmContent {
     position: relative;
-    padding: 20px;
     background-color: $black;
     width: 100%;
     margin-top: 40vh;
@@ -55,7 +54,7 @@
         justify-content: center;
         align-items: center;
         margin: 23px;
-        font-family: 'Inter';
+
         font-style: normal;
         font-weight: 600;
         font-size: 24px;
@@ -84,7 +83,7 @@
     .genre-list {
         display: flex;
         justify-content: center;
-        font-family: 'Inter';
+
         font-style: normal;
         font-weight: 400;
         font-size: 12px;
@@ -100,22 +99,24 @@
 
     .review {
         color: $white;
-        font-family: 'Inter';
+
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
         line-height: 19px;
         margin-top: 30px;
+        padding: 3%;
 
     }
 
     .review-content {
         color: $white;
-        font-family: 'Inter';
+
         font-style: normal;
         font-weight: 400;
         font-size: 15px;
         line-height: 24px;
+        padding: 3%;
     }
 
     .cast-list {
@@ -140,8 +141,9 @@
     }
 
     .like-container {
+        margin-top: 2rem;
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
         align-items: center;
         color: white;
 
@@ -152,10 +154,53 @@
         }
 
         .like-movie {
-            height: 50px;
+            height: 30px;
         }
 
     }
 
+    .shareContent {
+        top: 100%;
+        height: 0;
+        opacity: 0;
 
+        &.show {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            height: 100%;
+            overflow: hidden;
+            transition: all 1s;
+            opacity: 1;
+            background-color: $grey;
+        }
+    }
+}
+
+.rating-list li {
+    display: flex;
+    justify-content: flex-end;
+    color: #ddd;
+    padding: 10px 5px;
+
+}
+
+.star-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.rating-list li:hover,
+.rating-list li:hover~li,
+.rating-list li.selected {
+    color: #ffd700;
+}
+
+.rating-list {
+    display: inline-block;
+    list-style: none;
+}
+
+.star {
+    height: 18px;
 }

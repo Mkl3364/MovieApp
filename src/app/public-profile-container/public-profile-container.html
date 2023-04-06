@@ -1,22 +1,36 @@
-    <div class="public-container">
-         <div class="public-wrapper">
-            <div class="public-profile-header">
-                <img class="profile-first-content-img" [src]="photoURL" alt="user-image" />
-                <h3 class="public-title"><span routerLink="/profile/{{userUid}}">{{displayName}}</span> a aimé </h3>
-            </div>
-            <div>
-                <div class="films-content" >
-                    <div>
-                        <div class="films-content" *ngIf="userMovies$ | async as usersMovie" >
-                            <div *ngFor="let singleMovie of usersMovie.movies" class="liked-movies">
-                                <img src="https://image.tmdb.org/t/p/w500{{singleMovie.poster_path}}" loading="lazy" class="movie-img" />
-                                <h4 class="movie-title">{{singleMovie.original_title}}</h4>
-                                <h4>{{singleMovie.user_vote}}</h4>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<div *ngIf="userMovies$ | async as usersMovie" class="public-container">
+    <div class="public-wrapper">
+        <div class="public-profile-header">
+            <img class="profile-first-content-img" [src]="photoURL ? photoURL : '../../assets/img/user_default.png'"
+                alt="user-image" />
+            <h3 class="public-title">{{displayName}} a vu </h3>
+        </div>
+        <div>
+            <div class="films-content">
+                <div>
+                    <div class="films-content">
+                        <div *ngFor="let singleMovie of usersMovie.movies" class="liked-movies">
+
+                            <img src="https://image.tmdb.org/t/p/w500{{singleMovie.poster_path}}" loading="lazy"
+                                class="movie-img" />
+                            <h4 class="movie-title">{{singleMovie.original_title}}</h4>
+                            <div class="like-container">
+                                <div class="star-container">
+                                    <ul class="list-inline rating-list" *ngFor="let star of stars">
+                                        <li [ngClass]="{'selected': (star <= singleMovie.user_vote)}">
+                                            <span class="fa fa-star fa-3x"></span>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <tp-movies-footer></tp-movies-footer>
+</div>
+<tp-movies-footer></tp-movies-footer>

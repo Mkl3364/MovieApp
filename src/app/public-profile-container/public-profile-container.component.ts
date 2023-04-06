@@ -14,10 +14,12 @@ import { RouterLink } from "@angular/router";
 })
 export class PublicProfileContainerComponent implements OnInit {
     userMovies$: Observable<any> | undefined
+    public stars: number[];
     constructor(private firestore: AngularFirestore) {
         this.displayName = ''
         this.userUid = ''
         this.photoURL = ''
+        this.stars = [1, 2, 3, 4, 5]
     }
 
     @Input() displayName: string;

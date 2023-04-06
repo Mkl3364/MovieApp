@@ -27,17 +27,27 @@ export class SearchComponent implements OnInit {
 	query: string | null;
 	totalResults: number;
 
-	constructor(private readonly apiService: apiService, private route: ActivatedRoute) {
+	constructor(private readonly apiService: apiService, private route: ActivatedRoute, private getDefaultMovies: apiService) {
 		this.query = ''
 		this.movies = [];
 		this.currentPage = 1;
 		this.totalPages = 5;
 		this.totalResults = 0;
-	}
 
+	}
 	ngOnInit(): void {
 		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-		this.getMovies(this.route.snapshot.paramMap.get('query')!)
+		if (this.route.snapshot.paramMap.get('query')!) {
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+			this.getMovies(this.route.snapshot.paramMap.get('query')!)
+		}
+		else {
+			this.getDefaultMovies.getMovies().pipe(tap(filteredMovies => {
+				this.movies = filteredMovies
+				this.totalPages = filteredMovies.total_pages > 500 ? 500 : filteredMovies.total_pages
+				this.totalResults = filteredMovies.total_results;
+			})).subscribe();
+		}
 	}
 
 	getMovies(query: string = '') {

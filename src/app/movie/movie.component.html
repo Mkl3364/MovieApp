@@ -1,15 +1,19 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
 <div *ngIf="movie$ | async as movie">
     <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" loading="lazy" class="image-header" />
     <div routerLink="/movies" class="go-back">
         <img src="../../assets/img/arrow-left.svg" loading="lazy" />
     </div>
-    <div class="share">
+    <div class="share" (click)="clickOnShareOpen()">
         <img src="../../assets/img/share-icon.svg" loading="lazy" />
     </div>
     <div class="singleFilmContent">
         <div class="singleFilmTitle">{{movie.original_title}}</div>
         <div class="single-movie-elements">
-            <span class="movie-star"><img src="../../assets/img/movie_star.svg" loading="lazy" />{{movie.vote_average}}</span>
+            <span class="movie-star"><img src="../../assets/img/movie_star.svg"
+                    loading="lazy" />{{movie.vote_average}}</span>
             <span class="movie-star">{{movie.status}}</span>
             <span *ngIf="movie.adult" class="movie-star">18+</span>
         </div>
@@ -25,7 +29,7 @@
         <div *ngIf="castMovie$ | async as cast">
             <ul class="cast-list">
                 <li *ngFor="let bbb of cast.cast" class="castLi">
-                    <img src="https://image.tmdb.org/t/p/w500{{bbb.profile_path}}" loading="lazy" class="cast-photos"/>
+                    <img src="https://image.tmdb.org/t/p/w500{{bbb.profile_path}}" loading="lazy" class="cast-photos" />
                     {{bbb.name}}
                 </li>
             </ul>
@@ -33,15 +37,28 @@
         <div class="like-container">
             <span class="vu" *ngIf="!seen; else seenBlock">Déjà vu ?</span>
             <ng-template #seenBlock class="vu">Vu</ng-template>
-            <img src="../../assets/img/check-circle.svg" *ngIf="!seen; else iconSeenBlock" loading="lazy" class="like-movie" (click)="addMovieToLikes(movie)"/>
-            <ng-template #iconSeenBlock class="like-movie"><img src="../../assets/img/check-circle-green.svg" loading="lazy" class="like-movie"/></ng-template>
+            <img src="../../assets/img/check-circle.svg" *ngIf="!seen; else iconSeenBlock" loading="lazy"
+                class="like-movie" (click)="addMovieToLikes(movie)" />
+            <ng-template #iconSeenBlock class="like-movie"><img src="../../assets/img/check-circle-green.svg"
+                    loading="lazy" class="like-movie" /></ng-template>
         </div>
-        <share-buttons theme="modern-dark"
-            [include]="['copy', 'facebook', 'email', 'messenger', 'mix', 'line', 'linkedin', 'pinterest', 'print', 'reddit', 'sms', 'telegram', 'tumblr', 'twitter', 'viber', 'vk', 'xing', 'whatsapp']"
-            [showIcon]="true"
-            [showText]="true"
-            description="Angular Share Buttons"
-            class="pt-5">
-        </share-buttons>
+
+        <div class="like-container">
+            <div class="star-container">
+                <ul class="list-inline rating-list" *ngFor="let star of stars">
+                    <li (click)="countStar(star, movie)" [ngClass]="{'selected': (star <= selectedStarValue)}">
+                        <span class="fa fa-star fa-3x"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="shareContent" [ngClass]="openShare ? 'show' : '' ">
+            <share-buttons theme="modern-dark"
+                [include]="['copy', 'facebook', 'email', 'messenger', 'mix', 'line', 'linkedin', 'pinterest', 'print', 'reddit', 'sms', 'telegram', 'tumblr', 'twitter', 'viber', 'vk', 'xing', 'whatsapp']"
+                [showIcon]="true" [showText]="true" description="Manage your films, series and more !"
+                class="pt-5 pr-5">
+            </share-buttons>
+        </div>
     </div>
 </div>
