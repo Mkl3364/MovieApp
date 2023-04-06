@@ -68,6 +68,11 @@
         <div class="first-page">
             <form [formGroup]="registerForm">
                 <div class="container-input-label">
+                    <label>Nom d'utilisateur</label> <br />
+                    <input class="inputs" type="text" formControlName="registerUser"
+                        placeholder="John Doe">
+                </div>
+                <div class="container-input-label">
                     <label>Email</label> <br />
                     <input class="inputs" type="email" formControlName="registerEmail"
                         placeholder="example@example.com">
@@ -76,7 +81,12 @@
                     <label>Mot de passe</label> <br />
                     <input class="inputs" type="password" formControlName="registerPassword" placeholder="******" />
                 </div>
+                <div class="container-input-label">
+                    <label>Confirmation de Mot de passe</label> <br />
+                    <input class="inputs" type="password" formControlName="confimPassword" placeholder="******" />
+                </div>
             </form>
+            <p class="error-message" *ngIf="errorMessage"> {{ errorMessage }} </p>
             <button [disabled]="!registerForm.valid" (click)="onSubmitRegister()">Envoyer</button>
             <p class="account" (click)="registerIsClicked = false; getStartedIsClicked = true;">Déjà un compte ? Login
             </p>
