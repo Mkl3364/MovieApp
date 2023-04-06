@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { ChangeDetectorRef, Component } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { RouterLink } from "@angular/router";
 import { Observable } from "rxjs";
@@ -15,8 +15,16 @@ import { PublicProfileContainerComponent } from "../public-profile-container/pub
 export class PublicComponent {
     users$: Observable<any>
     usersMovies$: Observable<any>
-    constructor(private firestore: AngularFirestore, public auth: AngularFireAuth) {
+    constructor(private firestore: AngularFirestore, public auth: AngularFireAuth, private ref: ChangeDetectorRef) {
         this.users$ = this.firestore.collection("user").valueChanges();
         this.usersMovies$ = this.firestore.collection('movies').valueChanges()
+
+
+    }
+
+    aled() {
+        console.log('aaa')
+        this.ref.markForCheck();
+
     }
 }

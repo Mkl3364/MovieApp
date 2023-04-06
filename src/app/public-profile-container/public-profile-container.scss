@@ -17,58 +17,74 @@
     width: 80%;
     margin-inline: auto;
     margin-bottom: 2rem;
-}
 
-.public-wrapper {
-    display: flex;
-    flex-direction: column;
-}
+    .public-wrapper {
+        display: flex;
+        flex-direction: column;
 
-.public-profile-header {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
+        .public-profile-header {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
 
-.public-title {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 17px;
-    font-weight: 600;
-    line-height: 17px;
-    color: $white;
-}
+            .profile-first-content-img {
+                cursor: pointer;
+                margin-bottom: 0.5rem;
+                border-radius: 50%;
+                height: 60px;
+                width: 60px;
+                margin-right: 1rem;
+            }
 
-.films-content {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 2rem;
-    color: $white;
-}
+            .public-title {
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 17px;
+                font-weight: 600;
+                line-height: 17px;
+                color: $white;
+            }
+        }
+    }
 
-.movie-img {
-    width: 70%;
-    height: 70%;
-}
 
-.profile-first-content-img {
-    cursor: pointer;
-    margin-bottom: 0.5rem;
-    border-radius: 50%;
-    height: 60px;
-    width: 60px;
-    margin-right: 1rem;
-}
 
-.liked-movies {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
 
-.movie-title {
-    color: $white;
-    font-size: 1.3rem;
+
+    .films-content {
+        display: flex;
+        justify-content: flex-start;
+        overflow-x: scroll;
+        margin-top: 2rem;
+        color: $white;
+        gap: 2rem;
+
+        .liked-movies {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .movie-img {
+                width: 100px;
+                height: 70%;
+            }
+
+            h4 {
+                font-size: 1rem;
+            }
+        }
+    }
+
+
+
+
+
+
+
+    .movie-title {
+        color: $white;
+        font-size: 1.3rem;
+    }
 }

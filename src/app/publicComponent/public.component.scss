@@ -3,6 +3,7 @@
 .container {
     background-color: $black;
     min-height: 100vh;
+    padding-bottom: 10vh;
 }
 
 .title {
@@ -26,6 +27,7 @@
     width: 10px;
     height: 10px;
 }
+
 .user-name {
     font-family: 'Inter';
     font-style: normal;
