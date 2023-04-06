@@ -25,10 +25,5 @@ export class PublicProfileContainerComponent implements OnInit {
 
     ngOnInit(): void {
         this.userMovies$ = this.firestore.doc(`movies/${this.userUid}`).valueChanges()
-
-
-        if (this.photoURL == '') {
-            this.photoURL = '/img/user_default.png'
-        }
     }
 }
