@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { CommonModule } from "@angular/common";
+import { CommonModule, Location } from "@angular/common";
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { ActivatedRoute, RouterLink, RouterOutlet } from "@angular/router";
 import { Store } from "@ngrx/store";
@@ -29,40 +29,46 @@ export class MovieComponent implements OnInit {
     public seen: boolean;
     public liked: boolean;
     public openShare: boolean;
-    public stars : number[];
+    public stars: number[];
     public selectedStarValue: number;
     movie$ = this.movieService.getMovieWithId(parseInt(this.route.snapshot.paramMap.get('id')!));
     castMovie$ = this.movieService.getMovieCredits(parseInt(this.route.snapshot.paramMap.get('id')!))
-    constructor(private route: ActivatedRoute, public movieService: MovieService, private store: Store<UserState>, private firestore: AngularFirestore, public auth: AngularFireAuth) {
+    constructor(private route: ActivatedRoute, public movieService: MovieService, private store: Store<UserState>, private firestore: AngularFirestore, public auth: AngularFireAuth, private location: Location) {
         this.seen = false
         this.addedMovies$ = this.store.select((state) => state.moviesLiked)
         this.store.select(likedMoviesSelector).pipe(
-          ).subscribe(data => data)
+        ).subscribe(data => data)
         this.liked = false
         this.openShare = false
-        this.stars = [1, 2, 3, 4 ,5]
+        this.stars = [1, 2, 3, 4, 5]
         this.selectedStarValue = 0;
         this.uid = ''
     }
     async ngOnInit() {
-        const user  = await this.auth.currentUser
+        const user = await this.auth.currentUser
         const userRes = user
         this.firestore.doc(`movies/${userRes?.uid}`).get().subscribe(x => x.data())
-        
+
+    }
+
+    goBack() {
+        this.location.back();
     }
 
     addMovieToLikes(movie: Movie) {
         this.userUid$ = this.store.select(userLogSelector)
-        this.userUid$.pipe(tap((t: UserInterface) =>  {
-            this.store.dispatch(movieLiked({movie : {
-                ...movie,
-                userUid: t.uid,
-            }}))
-            
+        this.userUid$.pipe(tap((t: UserInterface) => {
+            this.store.dispatch(movieLiked({
+                movie: {
+                    ...movie,
+                    userUid: t.uid,
+                }
+            }))
+
         }), switchMap((userUid) => {
             return of(userUid).pipe(withLatestFrom(this.store.select(likedMoviesSelector)))
         })).subscribe(([userUid, movies]: [UserInterface, Movie[]]) => {
-            this.firestore.doc(`movies/${userUid.uid}`).set({movies}, {merge: true})
+            this.firestore.doc(`movies/${userUid.uid}`).set({ movies }, { merge: true })
             this.seen = true;
         })
         this.liked = true
@@ -74,17 +80,19 @@ export class MovieComponent implements OnInit {
 
     countStar(star: number, movie: Movie) {
         this.selectedStarValue = star;
-        this.store.select(userLogSelector).pipe(tap((t: UserInterface) =>  {
-            this.store.dispatch(movieLiked({movie : {
-                ...movie,
-                userUid: t.uid,
-                user_vote: star
-            }}))
-            
+        this.store.select(userLogSelector).pipe(tap((t: UserInterface) => {
+            this.store.dispatch(movieLiked({
+                movie: {
+                    ...movie,
+                    userUid: t.uid,
+                    user_vote: star
+                }
+            }))
+
         }), switchMap((userUid) => {
             return of(userUid).pipe(withLatestFrom(this.store.select(likedMoviesSelector)))
         })).subscribe(([userUid, movies]: [UserInterface, Movie[]]) => {
-            this.firestore.doc(`movies/${userUid.uid}`).set({movies}, {merge: true})
+            this.firestore.doc(`movies/${userUid.uid}`).set({ movies }, { merge: true })
         })
     }
 }

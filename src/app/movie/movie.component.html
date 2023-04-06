@@ -3,7 +3,7 @@
 
 <div *ngIf="movie$ | async as movie">
     <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" loading="lazy" class="image-header" />
-    <div routerLink="/movies" class="go-back">
+    <div (click)="goBack()" class="go-back">
         <img src="../../assets/img/arrow-left.svg" loading="lazy" />
     </div>
     <div class="share" (click)="clickOnShareOpen()">

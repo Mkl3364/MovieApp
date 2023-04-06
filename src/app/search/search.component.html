@@ -8,7 +8,7 @@
     <ul class="movies-list-container">
         <tp-movies-movie-container-common *ngFor="let movie of movies.results" [title]="movie.title"
             [backdrop_path]="movie.backdrop_path ? movie.backdrop_path : movie.poster_path"
-            [vote_average]="movie.vote_average" [release_date]="movie.release_date" />
+            [vote_average]="movie.vote_average" [release_date]="movie.release_date" [id]="movie.id" />
     </ul>
 
     <tp-movies-pagination [totalPages]="totalPages" [currentPage]="currentPage" (pageChanged)="onPageChanged($event)" />

@@ -1,11 +1,13 @@
 <li class="movie-container">
-    <img src="{{backgroundImage}}" alt="movie background image" routerLink="{{id}}" />
-    <p class="title" routerLink="{{id}}">{{ title }}</p>
-    <div class="info-container">
-        <div class="rate-container">
-            <img src="../../assets/img/star-icon.svg" alt="Star Icon">
-            {{vote_average}}
+    <a routerLink="/movies/{{id}}">
+        <img src="{{backgroundImage}}" alt="movie background image" />
+        <p class="title">{{ title }}</p>
+        <div class="info-container">
+            <div class="rate-container">
+                <img src="../../assets/img/star-icon.svg" alt="Star Icon">
+                {{vote_average}}
+            </div>
+            <p>{{release_date}}</p>
         </div>
-        <p>{{release_date}}</p>
-    </div>
+    </a>
 </li>
