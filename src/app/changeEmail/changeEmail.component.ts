@@ -46,8 +46,7 @@ export class ChangeEmailComponent implements OnInit {
             const user  = await this.auth.currentUser
             const userRes = user;
             if (this.emailForm.value.email) {
-                const res = await userRes?.updateEmail(this.emailForm.value.email)
-                console.log(res)
+                await userRes?.updateEmail(this.emailForm.value.email)
                 this.changed = true
             }
         } catch (error) {

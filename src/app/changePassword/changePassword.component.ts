@@ -33,8 +33,7 @@ export class ChangePasswordComponent {
             const user  = await this.auth.currentUser
             const userRes = user;
             if (this.passwordForm.value.password) {
-                const res = await userRes?.updatePassword(this.passwordForm.value.password)
-                console.log(res)
+                await userRes?.updatePassword(this.passwordForm.value.password)
                 this.changed = true
             }
         } catch (error) {
