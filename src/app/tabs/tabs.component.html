@@ -1,0 +1,24 @@
+<div class="tab-nav">
+    <div
+      class="tab"
+      *ngFor="let tab of tabs"
+      [class.active]="tab.active"
+      (click)="selectTab(tab)"
+    >
+      {{ tab.title }}
+    </div>
+</div>
+<div
+    *ngFor="let tab of tabs"
+    [class.active]="tab.active"
+    class="tab-content"
+>
+<div *ngIf="tab.active">
+    <div *ngIf="tab.content === 'seen'; else seen">
+        <tp-movies-seen-component></tp-movies-seen-component>
+    </div>
+    <ng-template #seen>
+        <tp-movies-rate-component></tp-movies-rate-component>
+    </ng-template>
+</div>
+</div>

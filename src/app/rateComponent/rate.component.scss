@@ -1,0 +1,21 @@
+@import '../../variables';
+
+.test {
+    color: $white;
+}
+
+.movies {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.movie-img {
+    width: 40%;
+    height: 40%;
+}
+
+.movie-content {
+    width: 40%;
+    font-size: 1.2rem;
+}

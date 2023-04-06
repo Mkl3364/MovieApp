@@ -1,0 +1,16 @@
+@import '../../variables';
+
+.tab-nav {
+    color: $white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+    border: 2px solid $white;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.tab-content {
+    color: $white;
+}

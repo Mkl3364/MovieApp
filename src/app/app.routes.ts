@@ -7,6 +7,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { MovieComponent } from './movie/movie.component';
 import { SearchComponent } from './search/search.component';
 import { PublicComponent } from './publicComponent/public.component';
+import { PublicProfilePageComponent } from './public-profile-page/public-profile-page.component';
 
 
 export const appRoutes: Route[] = [
@@ -41,6 +42,11 @@ export const appRoutes: Route[] = [
     {
         path: 'public',
         component: PublicComponent,
+        canActivate: [AngularFireAuthGuard]
+    },
+    {
+        path: 'profile/:uid',
+        component: PublicProfilePageComponent,
         canActivate: [AngularFireAuthGuard]
     }
 ]
