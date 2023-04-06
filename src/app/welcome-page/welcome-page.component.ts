@@ -53,8 +53,8 @@ export class WelcomePageComponent implements OnInit {
   })
 
   loginForm = this.db.group({
-    loginEmail: ['', [Validators.required, Validators.pattern(this.regexEmailConfirmation)]],
-    loginPassword: ['', Validators.required]
+    loginEmail: [],
+    loginPassword: []
   })
 
   ngOnInit() {
@@ -70,11 +70,28 @@ export class WelcomePageComponent implements OnInit {
   }
 
   SignIn() {
-
-    if(this.loginForm.value.loginEmail && this.loginForm.value.loginPassword) {
+    if(this.checkValidFormLogin() && this.loginForm.value.loginEmail && this.loginForm.value.loginPassword) {
       this.AuthService.SignIn(this.loginForm.value.loginEmail, this.loginForm.value.loginPassword).then(() => this.router.navigateByUrl('movies'));
     }
+  }
 
+  checkValidFormLogin(): boolean {
+    console.log(this.loginForm.value.loginPassword)
+    if(!this.loginForm.value.loginEmail) {
+      this.errorMessage = "Merci de rentrer une email";
+      return false;
+    }
+    if(!Validators.pattern(this.regexEmailConfirmation)){
+      this.errorMessage = "Votre email n'est pas conforme";
+      return false;
+    }
+
+    if(!this.loginForm.value.loginPassword) {
+      this.errorMessage = "Merci de rentrer un mot de passe";
+      return false;
+    }
+
+    return true;
   }
 
   login() {
@@ -104,7 +121,7 @@ export class WelcomePageComponent implements OnInit {
     this.emailSent = true;
   }
 
-  checkValidForm(): boolean {
+  checkValidFormRegister(): boolean {
     if(!this.registerForm.value.registerEmail) {
       this.errorMessage = "Merci de compléter l'email.";
       return false;
@@ -134,7 +151,7 @@ export class WelcomePageComponent implements OnInit {
   }
 
   onSubmitRegister() {
-    if(this.checkValidForm()  && this.registerForm.value.registerEmail && this.registerForm.value.registerPassword) {
+    if(this.checkValidFormRegister()  && this.registerForm.value.registerEmail && this.registerForm.value.registerPassword) {
       this.AuthService.SignUp(this.registerForm.value.registerEmail, this.registerForm.value.registerPassword).then(() => this.router.navigateByUrl('movies'));;
     }
     

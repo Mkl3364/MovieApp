@@ -28,7 +28,7 @@
                 <form [formGroup]="loginForm">
                     <div class="container-input-label">
                         <label>Email</label> <br />
-                        <input class="inputs" type="email" formControlName="loginEmail" placeholder="example@example.com">
+                        <input class="inputs" type="email" formControlName="loginEmail" placeholder="example@example.com" />
                     </div>
                     <div class="container-input-label">
                         <label>Mot de passe</label> <br />
@@ -36,7 +36,8 @@
                     </div>
                 </form>
                 <a (click)="resetPassword = true;" class="no-password">Mot de passe oublié ?</a>
-                <button [disabled]="!loginForm.valid" (click)="SignIn()">Envoyer</button>
+                <p class="error-message" *ngIf="errorMessage"> {{ errorMessage }}</p>
+                <button (click)="SignIn()">Envoyer</button>
 
                 <p (click)="registerIsClicked = true; getStartedIsClicked= false;" class="account">Pas de compte ? S'inscrire
                 </p>
