@@ -88,3 +88,35 @@
         font-size: 1.3rem;
     }
 }
+
+.rating-list li {
+    display: flex;
+    justify-content: flex-end;
+    color: #ddd;
+    padding: 5px 2px;
+
+}
+
+.star-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.rating-list li:hover,
+.rating-list li:hover~li,
+.rating-list li.selected {
+    color: #ffd700;
+}
+
+.fa-3x {
+    font-size: 1rem;
+}
+
+.rating-list {
+    display: inline-block;
+    list-style: none;
+}
+
+.star {
+    height: 18px;
+}

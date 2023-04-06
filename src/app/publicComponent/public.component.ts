@@ -15,16 +15,12 @@ import { PublicProfileContainerComponent } from "../public-profile-container/pub
 export class PublicComponent {
     users$: Observable<any>
     usersMovies$: Observable<any>
-    constructor(private firestore: AngularFirestore, public auth: AngularFireAuth, private ref: ChangeDetectorRef) {
+    constructor(private firestore: AngularFirestore, public auth: AngularFireAuth) {
         this.users$ = this.firestore.collection("user").valueChanges();
         this.usersMovies$ = this.firestore.collection('movies').valueChanges()
 
 
     }
 
-    aled() {
-        console.log('aaa')
-        this.ref.markForCheck();
 
-    }
 }
