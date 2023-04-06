@@ -6,9 +6,11 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MovieComponent } from './movie/movie.component';
 import { SearchComponent } from './search/search.component';
+import { PublicComponent } from './publicComponent/public.component';
 import { AccountComponent } from './account/account.component';
 import { ChangeEmailComponent } from './changeEmail/changeEmail.component';
 import { ChangePasswordComponent } from 'src/app/changePassword/changePassword.component';
+
 
 
 export const appRoutes: Route[] = [
@@ -38,6 +40,11 @@ export const appRoutes: Route[] = [
     {
         path: 'search/:query',
         component: SearchComponent,
+        canActivate: [AngularFireAuthGuard]
+    },
+    {
+        path: 'public',
+        component: PublicComponent,
         canActivate: [AngularFireAuthGuard]
     },
     {

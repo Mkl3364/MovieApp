@@ -1,0 +1,22 @@
+    <div class="public-container">
+         <div class="public-wrapper">
+            <div class="public-profile-header">
+                <img class="profile-first-content-img" [src]="photoURL" alt="user-image" />
+                <h3 class="public-title">{{displayName}} a aimé </h3>
+            </div>
+            <div>
+                <div class="films-content" >
+                    <div>
+                        <div class="films-content" *ngIf="userMovies$ | async as usersMovie" >
+                            <div *ngFor="let singleMovie of usersMovie.movies" class="liked-movies">
+                                <img src="https://image.tmdb.org/t/p/w500{{singleMovie.poster_path}}" loading="lazy" class="movie-img" />
+                                <h4 class="movie-title">{{singleMovie.original_title}}</h4>
+                                <h4>{{singleMovie.user_vote}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <tp-movies-footer></tp-movies-footer>
