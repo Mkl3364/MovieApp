@@ -28,6 +28,7 @@ export class WelcomePageComponent implements OnInit {
   emailSent: boolean;
   emailForgotPassword: string;
   regexEmailConfirmation = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
+  errorMessage: string;
 
   constructor (private readonly db: FormBuilder, public authent: AngularFireAuth, private router: Router, private store: Store, private AuthService: AuthService, private apiService: apiService, private firestore: AngularFirestore) {
 
@@ -38,6 +39,7 @@ export class WelcomePageComponent implements OnInit {
     this.resetPassword = false;
     this.emailSent = false;
     this.emailForgotPassword = this.forgotPwdForm.value.emailForgotPassword ?? "";
+    this.errorMessage = '';
   }
 
   forgotPwdForm = this.db.group({
@@ -45,8 +47,10 @@ export class WelcomePageComponent implements OnInit {
   })
 
   registerForm = this.db.group({
+    registerUser: [],
     registerEmail: ['', [Validators.required, Validators.pattern(this.regexEmailConfirmation)]],
-    registerPassword: ['', Validators.required]
+    registerPassword: [],
+    confimPassword: []
   })
 
   loginForm = this.db.group({
@@ -130,5 +134,34 @@ export class WelcomePageComponent implements OnInit {
       })
       this.router.navigateByUrl('movies')
     }
+  }
+  
+  checkValidForm(): boolean {
+    if(!this.registerForm.value.registerEmail) {
+      this.errorMessage = "Merci de compléter l'email.";
+      return false;
+    }
+
+    if(!this.registerForm.value.registerPassword) {
+      this.errorMessage = "Merci de compléter le mot de passe.";
+      return false;
+    }
+
+    if(!this.registerForm.value.registerUser) {
+      this.errorMessage = "Merci de compléter le nom d'utilisateur.";
+      return false;
+    }
+
+    if(!this.registerForm.value.confimPassword) {
+      this.errorMessage = "Merci de confirmer le mot de passe.";
+      return false;
+    }
+
+    if(this.registerForm.value.registerPassword !== this.registerForm.value.confimPassword){
+      this.errorMessage = "Vos mots de passe ne correspondent pas.";
+      return false;
+    }
+
+    return true;
   }
 }
