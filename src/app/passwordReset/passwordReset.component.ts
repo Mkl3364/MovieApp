@@ -4,7 +4,7 @@ import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { ActivatedRoute, Router, RouterLink, RouterOutlet } from "@angular/router";
 import { filter } from 'rxjs/operators';
-import { ForgotPwdService } from "../forgotPassword/forgotPassword.service";
+import { AuthService } from "../welcome-page/auth.service";
 
 @Component({
     standalone: true,
@@ -14,7 +14,7 @@ import { ForgotPwdService } from "../forgotPassword/forgotPassword.service";
     imports: [ReactiveFormsModule, CommonModule, RouterLink, RouterOutlet]
 })
 export class ResetPasswordComponent {
-    constructor(private readonly db: FormBuilder, public forgotPwdService: ForgotPwdService , public authent: AngularFireAuth, private router: Router, private query: ActivatedRoute) {
+    constructor(private readonly db: FormBuilder, public AuthService: AuthService , public authent: AngularFireAuth, private router: Router, private query: ActivatedRoute) {
         this.code = ''
         this.password = this.resetPasswordForm.value.password ?? ''
     }
@@ -32,6 +32,6 @@ export class ResetPasswordComponent {
             this.code = params.code;
             console.log(this.code)
         })
-        this.forgotPwdService.verifyResetPasswordCode(this.code).then(() => console.log('code is under verification'))
+        this.AuthService.verifyResetPasswordCode(this.code).then(() => console.log('code is under verification'))
     }
 }

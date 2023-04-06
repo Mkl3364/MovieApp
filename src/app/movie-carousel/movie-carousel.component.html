@@ -1,4 +1,4 @@
 <div *ngIf="dataMovies" class="carousel-container">
     <tp-movies-movie-container *ngFor="let movie of dataMovies" [title]="movie.title"
-        [backdrop_path]="movie.backdrop_path" [vote_average]="movie.vote_average" [genresName]="movie.genresName" />
+        [backdrop_path]="movie.backdrop_path" [vote_average]="movie.vote_average" [genresName]="movie.genresName" [id]="movie.id" />
 </div>

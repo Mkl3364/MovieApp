@@ -1,0 +1,137 @@
+@import '../../variables';
+
+.container {
+    background-color: $black;
+    min-height: 100vh;
+    padding-bottom: 10vh;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $white;
+    padding: 40px;
+}
+
+.subtitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $white;
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+
+.option-items-img {
+    width: 10px;
+    height: 10px;
+}
+
+.user-name {
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    color: $white;
+}
+
+.user-email {
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: $grey;
+}
+
+.option-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    color: $white;
+}
+
+.public-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+    position: relative;
+    background-color: $black;
+    border: 1px solid $white;
+    color: $white;
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 80%;
+    margin-inline: auto;
+    margin-bottom: 2rem;
+}
+
+.public-title {
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 17px;
+}
+
+.films-section {
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 15px;
+    margin-top: 2rem
+}
+
+.public-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.films-content {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+    color: $white;
+}
+
+.go-back {
+    cursor: pointer;
+    background-color: $grey;
+    position: absolute;
+    left: 6.93%;
+    right: 85.07%;
+    top: 2.93%;
+    bottom: 93.41%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+}
+
+.profile-first-content-img {
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    margin-right: 2rem;
+}
+
+.public-profile-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.hello {
+    color: $white;
+}

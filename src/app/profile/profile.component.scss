@@ -2,7 +2,8 @@
 
 .container {
     background-color: $black;
-    height: 100vh;
+    min-height: 100vh;
+    padding-bottom: 15vh;
 }
 
 .profile-fist-content {
@@ -11,12 +12,18 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
+
+    .d-none {
+        display: none;
+    }
 }
 
 .profile-first-content-img {
+    cursor: pointer;
+    margin-bottom: 0.5rem;
     border-radius: 50%;
-    height: 50px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
 }
 
 .option-items-img {
@@ -25,12 +32,14 @@
 }
 
 .option-items-button {
-    width: 120px;
-    height: 79px;
+    flex: 1;
+
+    p {
+        margin-top: .5rem;
+    }
 }
 
 .user-name {
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
@@ -39,7 +48,6 @@
 }
 
 .user-email {
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -49,8 +57,9 @@
 
 .option-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    gap: 1rem;
     padding: 20px;
 }
 
@@ -77,7 +86,6 @@
 .membership-title {
     color: $white;
     margin-bottom: 10px;
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -85,7 +93,6 @@
 }
 
 .membership-titleh3 {
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -93,7 +100,6 @@
 }
 
 .membership-title4 {
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
@@ -110,4 +116,44 @@ hr {
     border: .5px solid $grey;
     margin-left: 20px;
     margin-right: 20px;
+}
+
+.go-back {
+    cursor: pointer;
+    background-color: $grey;
+    position: absolute;
+    left: 6.93%;
+    right: 85.07%;
+    top: 2.93%;
+    bottom: 93.41%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+}
+
+.deconnection {
+
+    p {
+        padding: 1rem;
+        color: white;
+        width: fit-content;
+        border-radius: 0.5rem;
+        margin-left: auto;
+        margin-right: auto;
+        border: 2px solid $purple;
+    }
+}
+
+
+.deconnection {
+
+    text-decoration: none;
+    margin-top: 2rem;
+    display: block;
+
+    p {
+        font-size: 2rem;
+        padding: 1rem 2rem;
+    }
 }

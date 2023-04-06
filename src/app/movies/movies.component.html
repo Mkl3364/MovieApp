@@ -1,19 +1,10 @@
 <tp-movies-header></tp-movies-header>
 <section class="homepage-container" *ngIf="movies$ | async as movie">
-    <div class="search-input-container">
-        <input class="search-input" type="text" placeholder="What are you watching today">
-        <img src="../../assets/img/search-icon.svg" alt="Search Icon">
-    </div>
+    <tp-movies-search-container />
 
     <h2>A la une</h2>
 
     <tp-movies-movie-carousel></tp-movies-movie-carousel>
-
-
-    <h2>Continuer à regarder</h2>
-
-    <tp-movies-movie-carousel></tp-movies-movie-carousel>
-
 
     <h2>Genre</h2>
     <div class="filter-genre">
@@ -25,7 +16,7 @@
     <ul class="movies-list-container">
         <tp-movies-movie-container-common *ngFor="let movie of recentMovies.results" [title]="movie.title"
             [backdrop_path]="movie.backdrop_path ? movie.backdrop_path : movie.poster_path"
-            [vote_average]="movie.vote_average" [release_date]="movie.release_date" />
+            [vote_average]="movie.vote_average" [release_date]="movie.release_date" [id]="movie.id" />
     </ul>
 
     <tp-movies-pagination [totalPages]="totalPages" [currentPage]="currentPage" (pageChanged)="onPageChanged($event)" />

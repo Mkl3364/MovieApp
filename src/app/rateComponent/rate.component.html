@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+<div class="test" *ngIf="moviesLiked$ | async as movies">
+    <div class="movies" *ngFor="let movie of movies.movies">
+        <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="movie-img" class="movie-img" />
+        <div class="movie-content">
+            <div class="star-container">
+                <ul class="list-inline rating-list" *ngFor="let star of stars">
+                    <li [ngClass]="{'selected': (star <= movie.user_vote)}">
+                        <span class="fa fa-star fa-3x"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

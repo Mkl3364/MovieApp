@@ -1,0 +1,29 @@
+@import '../../variables';
+
+.search-page-container {
+    background-color: $black;
+    padding-bottom: 10vh;
+    padding-top: 2rem;
+    min-height: 90vh;
+
+
+    .search-result-container {
+
+        color: $white;
+        margin-left: 2rem;
+
+    }
+
+
+    .movies-list-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 2rem;
+        gap: 2rem;
+
+        tp-movies-movie-container-common {
+            width: 45%;
+        }
+    }
+}

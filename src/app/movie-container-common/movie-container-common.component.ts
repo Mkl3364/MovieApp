@@ -1,10 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
 	standalone: true,
 	selector: 'tp-movies-movie-container-common',
 	templateUrl: './movie-container-common.component.html',
-	styleUrls: ['./movie-container-common.component.scss']
+	styleUrls: ['./movie-container-common.component.scss'],
+	imports: [RouterLink, RouterOutlet]
 })
 export class MovieContainerCommonComponent implements OnInit {
 
@@ -16,12 +18,14 @@ export class MovieContainerCommonComponent implements OnInit {
 		this.vote_average = 0;
 		this.release_date = '';
 		this.backgroundImage = '';
+		this.id = 0;
 	}
 
 	@Input() title: string;
 	@Input() backdrop_path: string;
 	@Input() vote_average: number;
 	@Input() release_date: string;
+	@Input() id: number;
 
 	ngOnInit() {
 		if (!this.backdrop_path) {
@@ -29,5 +33,17 @@ export class MovieContainerCommonComponent implements OnInit {
 		} else {
 			this.backgroundImage = `https://image.tmdb.org/t/p/w500${this.backdrop_path}`;
 		}
+
+
+
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('show')
+				}
+			})
+		})
+		const hiddenElements = document.querySelectorAll('.movie-container')
+		hiddenElements.forEach((el) => observer.observe(el))
 	}
 }

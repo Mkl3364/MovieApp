@@ -1,65 +1,94 @@
 <div class="welcome-page">
-    <img class="main-image" src="https://image.tmdb.org/t/p/w500/{{randomImage}}" alt='{{randomName}}' />
-
-    <h1 class="title">
-        Watch movie anywhere. anytime.
-    </h1>
-    <p class="sub-title">
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam.
-    </p>
-    <button (click)="getStartedIsClicked = true" class="get-started"> Get Started </button>
+    <img class="main-image child-welcome-page" src="https://image.tmdb.org/t/p/w500/{{randomImage}}" alt='{{randomName}}' />
+    <div class="child-welcome-page">
+        <h1 class="title">
+            Regardez des films n'importe où, n'importe quand.
+        </h1>
+        <p class="sub-title">
+            Découvrez la liberté de la diffusion de films fluide : Regardez vos films préférés où que vous soyez, à tout moment et sur n'importe quel appareil grâce à notre plateforme de pointe.
+        </p>
+        <button (click)="getStartedIsClicked = true" class="get-started"> Commencer ! </button>
+    </div>
+    <img class="main-image child-welcome-page desktop-element" src="https://image.tmdb.org/t/p/w500/{{randomImage}}" alt='{{randomName}}' />
 </div>
 
 
 <div class="auth-page" *ngIf="getStartedIsClicked">
     <div class="content-auth-page">
-        <img class="close-img" (click)="getStartedIsClicked = false" src="../../assets/img/cross.svg"
+        <img class="close-img" (click)="getStartedIsClicked = false; resetPassword=false;" src="../../assets/img/cross.svg"
             alt="close popup" />
-        <h2 class="title-auth"> Login </h2>
-
-        <div class="first-page">
-            <form [formGroup]="loginForm">
-                <div>
-                    <label>Email</label> <br />
-                    <input class="inputs" type="email" formControlName="loginEmail" placeholder="example@example.com">
-                </div>
-                <div>
-                    <label>Password</label> <br />
-                    <input class="inputs" type="password" formControlName="loginPassword" placeholder="******" />
-                </div>
-            </form>
-            <a class="no-password" routerLink="forgotPassword">Mot de passe oublié ?</a>
-            <button [disabled]="!loginForm.valid" (click)="SignIn()">Submit</button>
-
-            <h2 class="title-auth"> Login with </h2>
+        <div *ngIf="!resetPassword else getResetForm">
+            <h2 class="title-auth"> Login </h2>
             <div class="social-network-connexion">
                 <img (click)="SignInWithGithub()" src="../../assets/img/github.svg" alt="login with github">
                 <img (click)="login()" src="../../assets/img/google.svg" alt="login with google">
             </div>
+            <h2 class="title-auth"> Or </h2>
+            <div class="first-page">
+                <form [formGroup]="loginForm">
+                    <div class="container-input-label">
+                        <label>Email</label> <br />
+                        <input class="inputs" type="email" formControlName="loginEmail" placeholder="example@example.com" />
+                    </div>
+                    <div class="container-input-label">
+                        <label>Mot de passe</label> <br />
+                        <input class="inputs" type="password" formControlName="loginPassword" placeholder="******" />
+                    </div>
+                </form>
+                <a (click)="resetPassword = true;" class="no-password">Mot de passe oublié ?</a>
+                <p class="error-message" *ngIf="errorMessage"> {{ errorMessage }}</p>
+                <button (click)="SignIn()">Envoyer</button>
 
-            <p (click)="registerIsClicked = true; getStartedIsClicked= false;" class="account">Pas de compte ? Register
-            </p>
+                <p (click)="registerIsClicked = true; getStartedIsClicked= false;" class="account">Pas de compte ? S'inscrire
+                </p>
+            </div>
         </div>
+        <ng-template #getResetForm>
+            <div class="first-page" *ngIf="!emailSent; else showEmailSentSuccess">
+                <h2 class="title-auth">Réinitialiser le mot de passe</h2>
+                <form [formGroup]="forgotPwdForm">
+                    <div class="container-input-label">
+                        <label>Email</label> <br />
+                        <input class="inputs" type="email" formControlName="emailForgotPassword" [(ngModel)]="emailForgotPassword">
+                    </div>
+                    <p (click)="resetPassword = false;" class="account">Se connecter</p>
+                </form>
+                <button [disabled]="!forgotPwdForm.valid" (click)="forgotPasswordSubmit()"> Nouveau mot de passe </button>
+            </div>
+            <ng-template #showEmailSentSuccess>
+                <h2 class="reset-pwd-message" >Email envoyé ! Vérifiez votre boîte de réception et suivez les instructions.</h2>
+            </ng-template>
+        </ng-template>
     </div>
 </div>
 
 <div class="auth-page" *ngIf="registerIsClicked">
     <div class="content-auth-page">
         <img class="close-img" (click)="registerIsClicked = false" src="../../assets/img/cross.svg" alt="close popup" />
-        <h2 class="title-auth"> Register </h2>
+        <h2 class="title-auth"> S'enregistrer </h2>
         <div class="first-page">
             <form [formGroup]="registerForm">
-                <div>
+                <div class="container-input-label">
+                    <label>Nom d'utilisateur</label> <br />
+                    <input class="inputs" type="text" formControlName="registerUser"
+                        placeholder="John Doe">
+                </div>
+                <div class="container-input-label">
                     <label>Email</label> <br />
                     <input class="inputs" type="email" formControlName="registerEmail"
                         placeholder="example@example.com">
                 </div>
-                <div>
-                    <label>Password</label> <br />
+                <div class="container-input-label">
+                    <label>Mot de passe</label> <br />
                     <input class="inputs" type="password" formControlName="registerPassword" placeholder="******" />
                 </div>
+                <div class="container-input-label">
+                    <label>Confirmation de Mot de passe</label> <br />
+                    <input class="inputs" type="password" formControlName="confimPassword" placeholder="******" />
+                </div>
             </form>
-            <button [disabled]="!registerForm.valid" (click)="onSubmitRegister()">Submit register form</button>
+            <p class="error-message" *ngIf="errorMessage"> {{ errorMessage }} </p>
+            <button [disabled]="!registerForm.valid" (click)="onSubmitRegister()">Envoyer</button>
             <p class="account" (click)="registerIsClicked = false; getStartedIsClicked = true;">Déjà un compte ? Login
             </p>
         </div>

@@ -1,0 +1,17 @@
+<div class="container">
+    <div routerLink="/movies" class="go-back">
+        <img src="../../assets/img/arrow-left.svg" />
+    </div>
+    <div class="profile-fist-content" *ngIf="user$ | async as publicUser">
+        <div>
+            <div class="photo">
+                <img class="profile-first-content-img" [src]="publicUser.finalUser.photoURL" alt="user-image" />
+            </div>
+            <h2 class="user-name">{{publicUser.finalUser.displayName}}</h2>
+            <h3 class="user-email">{{publicUser.finalUser.email}}</h3>
+        </div>
+    </div>
+    <div>
+        <tp-movies-tabs></tp-movies-tabs>
+    </div>
+</div>
