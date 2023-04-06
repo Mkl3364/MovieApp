@@ -7,6 +7,10 @@ import { ProfileComponent } from './profile/profile.component';
 import { MovieComponent } from './movie/movie.component';
 import { SearchComponent } from './search/search.component';
 import { PublicComponent } from './publicComponent/public.component';
+import { AccountComponent } from './account/account.component';
+import { ChangeEmailComponent } from './changeEmail/changeEmail.component';
+import { ChangePasswordComponent } from 'src/app/changePassword/changePassword.component';
+
 
 
 export const appRoutes: Route[] = [
@@ -41,6 +45,21 @@ export const appRoutes: Route[] = [
     {
         path: 'public',
         component: PublicComponent,
+        canActivate: [AngularFireAuthGuard]
+    },
+    {
+        path: 'account',
+        component: AccountComponent,
+        canActivate: [AngularFireAuthGuard]
+    },
+    {
+        path: 'changeEmail',
+        component: ChangeEmailComponent,
+        canActivate: [AngularFireAuthGuard]
+    },
+    {
+        path: 'changePassword',
+        component: ChangePasswordComponent,
         canActivate: [AngularFireAuthGuard]
     }
 ]

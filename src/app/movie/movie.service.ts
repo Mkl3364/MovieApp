@@ -1,11 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { Observable, tap } from "rxjs";
-import { userLogSelector } from "../state/user.selector";
-
+import { Observable } from "rxjs";
 
 export interface Movie {
+    user_vote: number;
     userUid: string;
     adult: boolean
     genres : Genre[]
