@@ -41,15 +41,6 @@
     color: $white;
 }
 
-.films-section {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 15px;
-    margin-top: 2rem
-}
-
 .films-content {
     display: flex;
     justify-content: space-around;
@@ -57,11 +48,28 @@
     color: $white;
 }
 
-.hello {
-    color: $white;
+.movie-img {
+    width: 70%;
+    height: 70%;
 }
 
-.movie-img {
-    width: 40%;
-    height: 60%;
+.profile-first-content-img {
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    margin-right: 1rem;
+}
+
+.liked-movies {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.movie-title {
+    color: $white;
+    font-size: 1.3rem;
 }
