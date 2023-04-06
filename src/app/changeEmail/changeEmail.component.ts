@@ -6,13 +6,14 @@ import { RouterLink, RouterOutlet } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { UserInterface } from "../movie/movie.service";
+import { FooterComponent } from "../footer/footer.component";
 
 @Component({
     standalone: true,
     selector: "tp-movies-change-email",
     templateUrl: 'changeEmail.component.html',
     styleUrls: ["./changeEmail.component.scss"],
-    imports: [RouterLink, RouterOutlet, CommonModule, ReactiveFormsModule]
+    imports: [RouterLink, RouterOutlet, CommonModule, ReactiveFormsModule, FooterComponent]
 })
 export class ChangeEmailComponent implements OnInit {
     public user$: Observable<UserInterface> | undefined
@@ -34,7 +35,7 @@ export class ChangeEmailComponent implements OnInit {
     ngOnInit(): void {
         this.auth.authState.subscribe((user) => {
             if (user) {
-                if(user.email) {
+                if (user.email) {
                     this.userEmail = user.email;
                 }
             }
@@ -43,7 +44,7 @@ export class ChangeEmailComponent implements OnInit {
 
     async changeEmailAdress() {
         try {
-            const user  = await this.auth.currentUser
+            const user = await this.auth.currentUser
             const userRes = user;
             if (this.emailForm.value.email) {
                 await userRes?.updateEmail(this.emailForm.value.email)

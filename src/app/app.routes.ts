@@ -43,6 +43,11 @@ export const appRoutes: Route[] = [
         canActivate: [AngularFireAuthGuard]
     },
     {
+        path: 'search',
+        component: SearchComponent,
+        canActivate: [AngularFireAuthGuard]
+    },
+    {
         path: 'public',
         component: PublicComponent,
         canActivate: [AngularFireAuthGuard]

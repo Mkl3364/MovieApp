@@ -5,6 +5,7 @@ import { finalize, Observable, tap } from "rxjs";
 import { AngularFireStorage } from "@angular/fire/compat/storage";
 import { Reference } from "@angular/fire/compat/storage/interfaces";
 import { CommonModule } from '@angular/common';
+import { FooterComponent } from "../footer/footer.component";
 
 
 @Component({
@@ -12,7 +13,7 @@ import { CommonModule } from '@angular/common';
     selector: 'tp-movies-profile',
     templateUrl: 'profile.component.html',
     styleUrls: ['./profile.component.scss'],
-    imports: [RouterLink, RouterOutlet, CommonModule]
+    imports: [RouterLink, RouterOutlet, CommonModule, FooterComponent]
 })
 
 export class ProfileComponent implements OnInit {
@@ -34,16 +35,16 @@ export class ProfileComponent implements OnInit {
     ngOnInit() {
         this.auth.authState.subscribe((user) => {
             if (user) {
-                if(user.email) {
+                if (user.email) {
                     this.userEmail = user.email;
                 }
-                if(user.displayName) {
+                if (user.displayName) {
                     this.userName = user.displayName;
                 }
-                if(user.photoURL !== null) {
+                if (user.photoURL !== null) {
                     this.photoURL$ = user.photoURL;
                 }
-                if(user.uid) {
+                if (user.uid) {
                     this.userId = user.uid;
                     this.updateProfileImage();
                 }
@@ -64,17 +65,17 @@ export class ProfileComponent implements OnInit {
         this.onSubmitImg();
     }
     onSubmitImg() {
-        if(this.selectedFile) {
+        if (this.selectedFile) {
             const filePath = 'usersImages/' + this.userId;
             const storageRef = this.storage.ref(filePath);
             const task = storageRef.put(this.selectedFile);
-          
+
             task.snapshotChanges().pipe(
-              finalize(() => {
-                storageRef.getDownloadURL().subscribe((downloadUrl: unknown) => {
-                    this.updateProfileImage();
-                });
-              })
+                finalize(() => {
+                    storageRef.getDownloadURL().subscribe((downloadUrl: unknown) => {
+                        this.updateProfileImage();
+                    });
+                })
             ).subscribe();
         }
     }
