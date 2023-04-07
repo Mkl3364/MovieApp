@@ -18,9 +18,10 @@ export class PublicComponent {
     constructor(private firestore: AngularFirestore, public auth: AngularFireAuth) {
         this.users$ = this.firestore.collection("user").valueChanges();
         this.usersMovies$ = this.firestore.collection('movies').valueChanges()
-
-
     }
 
 
+    addItem(newItem: string) {
+        console.log(newItem)
+    }
 }
