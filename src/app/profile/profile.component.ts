@@ -56,7 +56,6 @@ export class ProfileComponent implements OnInit {
         const getImage = this.storage.ref(`usersImages/${this.userId}`);
         getImage.getDownloadURL().subscribe(photoURL => {
             this.photoURL$ = photoURL;
-            console.log(this.photoURL$)
         });
     }
 

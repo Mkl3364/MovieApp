@@ -77,7 +77,6 @@ export class WelcomePageComponent implements OnInit {
   }
 
   checkValidFormLogin(): boolean {
-    console.log(this.loginForm.value.loginPassword)
     if(!this.loginForm.value.loginEmail) {
       this.errorMessage = "Merci de rentrer une email";
       return false;

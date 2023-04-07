@@ -31,7 +31,6 @@ export class MyTabsComponent {
                 active: false
             }
         ];
-        console.log(this.tabs)
     }
 
     selectTab(tab: TabsInterface) {
@@ -39,7 +38,6 @@ export class MyTabsComponent {
         tab.active = false;
       });
       tab.active = true;
-      console.log('the tab', tab)
     }
   
     addTab(tab: TabsInterface) {

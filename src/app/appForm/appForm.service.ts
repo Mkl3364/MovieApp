@@ -20,9 +20,6 @@ export class AppFormService {
   SignIn(email: string, password: string) {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
-      .then((result) => {
-        console.log(result)
-      })
       .catch((error) => {
         window.alert(error.message);
       });
@@ -31,9 +28,6 @@ export class AppFormService {
   SignUp(email: string, password: string) {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
-      .then((result) => {
-        console.log(result)
-      })
       .catch((error) => {
         window.alert(error.message);
       });
