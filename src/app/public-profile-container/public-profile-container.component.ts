@@ -16,6 +16,7 @@ export class PublicProfileContainerComponent implements OnInit {
     userMovies$: Observable<any> | undefined
     dataMovies$: Observable<any> | undefined
     public stars: number[];
+    userMovies: any;
     constructor(private firestore: AngularFirestore) {
         this.displayName = ''
         this.userUid = ''
@@ -35,7 +36,7 @@ export class PublicProfileContainerComponent implements OnInit {
             tap(
                 data => {
                     if (data != undefined) {
-                        data?.movies.sort((firstDate: { date: string | number | Date; }, secondeDate: { date: string | number | Date; }) => {
+                        this.userMovies = data?.movies.sort((firstDate: { date: string | number | Date; }, secondeDate: { date: string | number | Date; }) => {
                             return <any>new Date(secondeDate.date) - <any>new Date(firstDate.date);
                           });
                           this.newItemEvent.emit(data.movies);
