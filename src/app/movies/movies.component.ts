@@ -4,6 +4,7 @@ import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { PaginationComponent } from "../pagination/pagination.component";
 import { MovieCarouselComponent } from "../movie-carousel/movie-carousel.component";
+import { NotificationPushComponent } from "../notification-push/notification-push.component";
 import { Router, RouterLink } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
@@ -25,7 +26,7 @@ interface genre {
     selector: "tp-movies-movies-api",
     templateUrl: "./movies.component.html",
     styleUrls: ['./movies.component.scss'],
-    imports: [CommonModule, HeaderComponent, RouterLink, FooterComponent, MovieCarouselComponent, MovieContainerCommonComponent, PaginationComponent, ReactiveFormsModule, SearchContainerComponent]
+    imports: [CommonModule, HeaderComponent, RouterLink, FooterComponent, MovieCarouselComponent, MovieContainerCommonComponent, PaginationComponent, ReactiveFormsModule, SearchContainerComponent, NotificationPushComponent]
 })
 export class MoviesComponent implements OnInit {
 
