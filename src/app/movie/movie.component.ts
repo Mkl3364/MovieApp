@@ -74,7 +74,7 @@ export class MovieComponent implements OnInit {
         }), switchMap((userUid) => {
             return of(userUid).pipe(withLatestFrom(this.store.select(likedMoviesSelector)))
         })).subscribe(([userUid, movies]: [UserInterface, Movie[]]) => {
-            this.firestore.doc(`movies/${userUid.uid}`).set({ movies }, { merge: true })
+            this.firestore.doc(`movies/${userUid.uid}`).update({ movies })
             this.seen = true;
         })
         this.liked = true
@@ -104,7 +104,7 @@ export class MovieComponent implements OnInit {
         }), switchMap((userUid) => {
             return of(userUid).pipe(withLatestFrom(this.store.select(likedMoviesSelector)))
         })).subscribe(([userUid, movies]: [UserInterface, Movie[]]) => {
-            this.firestore.doc(`movies/${userUid.uid}`).set({ movies }, { merge: true })
+            this.firestore.doc(`movies/${userUid.uid}`).update({ movies })
         })
     }
 }

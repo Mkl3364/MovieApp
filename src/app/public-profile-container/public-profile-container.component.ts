@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, Input, OnInit } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
-import { Observable, tap } from "rxjs";
+import { Observable, map, tap } from "rxjs";
 import { FooterComponent } from "../footer/footer.component";
 import { RouterLink } from "@angular/router";
 
@@ -27,7 +27,16 @@ export class PublicProfileContainerComponent implements OnInit {
     @Input() photoURL: string;
 
     ngOnInit(): void {
-        this.userMovies$ = this.firestore.doc(`movies/${this.userUid}`).valueChanges();
+        this.userMovies$ = this.firestore.doc(`movies/${this.userUid}`)
+        .valueChanges()
+        .pipe(tap((user: any) => {
+            if(user?.movies.length !== 0){
+        user.movies = user?.movies?.filter((value: { id: any; }, index: any, self: any[]) =>
+        index === self.findIndex((t) => (
+          t.id === value.id
+        ))
+      )
+    }}))
         this.userMovies$.pipe(
             tap(
                 data => {
