@@ -28,9 +28,7 @@ export class ResetPasswordComponent {
 
     onSubmitResetPassword() {
         this.query.queryParams.pipe(filter((params: any) => params.code)).subscribe((params: any) => {
-            console.log(params);
             this.code = params.code;
-            console.log(this.code)
         })
         this.AuthService.verifyResetPasswordCode(this.code).then(() => console.log('code is under verification'))
     }

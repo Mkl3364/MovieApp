@@ -18,7 +18,6 @@ export class PublicProfilePageComponent {
     constructor(public firestore: AngularFirestore, private route: ActivatedRoute) {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         this.query = this.route.snapshot.paramMap.get('uid')!
-        console.log(this.query)
         this.user$ = this.firestore.doc(`user/${this.query}`).valueChanges();
     }
 }

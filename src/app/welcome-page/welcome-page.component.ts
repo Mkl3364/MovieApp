@@ -76,16 +76,15 @@ export class WelcomePageComponent implements OnInit {
 		}
 	}
 
-	checkValidFormLogin(): boolean {
-		console.log(this.loginForm.value.loginPassword)
-		if (!this.loginForm.value.loginEmail) {
-			this.errorMessage = "Merci de rentrer une email";
-			return false;
-		}
-		if (!Validators.pattern(this.regexEmailConfirmation)) {
-			this.errorMessage = "Votre email n'est pas conforme";
-			return false;
-		}
+  checkValidFormLogin(): boolean {
+    if(!this.loginForm.value.loginEmail) {
+      this.errorMessage = "Merci de rentrer une email";
+      return false;
+    }
+    if(!Validators.pattern(this.regexEmailConfirmation)){
+      this.errorMessage = "Votre email n'est pas conforme";
+      return false;
+    }
 
 		if (!this.loginForm.value.loginPassword) {
 			this.errorMessage = "Merci de rentrer un mot de passe";

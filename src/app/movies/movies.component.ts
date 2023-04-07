@@ -61,10 +61,8 @@ export class MoviesComponent implements OnInit {
                 }))
                 this.store.select(userLogSelector).pipe(
                 ).subscribe(user => {
-                    console.log('data', user);
+                    // console.log('data', user);
                 })
-            } else {
-                console.log("no user")
             }
         });
 
